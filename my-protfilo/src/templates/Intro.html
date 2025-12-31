@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro-Home</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=phone_forwarded" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=mail" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f3f3f3;
+            margin: 0;
+            
+            scroll-behavior: smooth;
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, 
+                rgba(144, 238, 144, 0.3), 
+                rgba(255, 255, 102, 0.3), 
+                rgba(255, 182, 193, 0.3),
+                rgba(173, 216, 230, 0.3),
+                rgba(221, 160, 221, 0.3));
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating color orbs */
+        .color-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(144, 238, 144, 0.5);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 102, 0.5);
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 182, 193, 0.5);
+            bottom: 10%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        .orb4 {
+            width: 280px;
+            height: 280px;
+            background: rgba(173, 216, 230, 0.5);
+            top: 30%;
+            right: 30%;
+            animation-delay: 3s;
+        }
+
+        .orb5 {
+            width: 200px;
+            height: 200px;
+            background: rgba(221, 160, 221, 0.5);
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, 50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, 80px) scale(0.9);
+            }
+            75% {
+                transform: translate(40px, -40px) scale(1.05);
+            }
+        }
+
+        .header-home {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            font-size: 22px;
+            gap: 13px;
+            padding: 20px 50px;
+            background-color: transparent;
+        }
+
+        .logo {
+            margin-right: auto;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .header-home li a {
+            text-decoration: none;
+            color: black;
+            margin-left: 5px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block; 
+        }
+
+        .header-home li a:hover {
+            color: rgb(240, 245, 109);
+            transform: scale(1.2); 
+            cursor: pointer;
+        }
+
+        .main {
+            max-width: 1300px;
+            margin: auto;
+            display: flex;
+            margin-top: 210px;
+        }
+
+        .profile {
+            background-color: #efd8ef;
+            width: 120%;      
+            height: 560px;        
+            border-radius: 50%;
+            border: 2px solid black;
+            background-image: url("../images/9cf4ea19-1a03-4a15-b721-4b1b8ffda988_removalai_preview.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            box-shadow: 
+                0 0 40px rgba(240, 245, 109, 0.6),
+                0 0 80px rgba(255, 182, 193, 0.4),
+                0 0 120px rgba(173, 216, 230, 0.3),
+                inset 0 0 60px rgba(255, 255, 255, 0.1);
+            animation: profileGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes profileGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 40px rgba(240, 245, 109, 0.6),
+                    0 0 80px rgba(255, 182, 193, 0.4),
+                    0 0 120px rgba(173, 216, 230, 0.3),
+                    inset 0 0 60px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 60px rgba(255, 182, 193, 0.8),
+                    0 0 100px rgba(240, 245, 109, 0.6),
+                    0 0 140px rgba(221, 160, 221, 0.5),
+                    inset 0 0 80px rgba(255, 255, 255, 0.2);
+            }
+        }
+        
+
+        /* Shimmer effect overlay */
+        .profile::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-3%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(3%) rotate(45deg);
+            }
+        }
+
+ .main-content h1 {
+    margin: 60px 0 6px 50px;
+
+    font-family: "Caveat", cursive;
+    font-size: clamp(56px, 7vw, 82px);
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    line-height: 1.1;
+    color: #111;
+
+    opacity: 0;
+    transform: translate3d(0, 150px, 0);
+
+    animation: smoothFadeUp 0.9s ease-out forwards;
+    will-change: transform, opacity;
+}
+
+
+@keyframes smoothFadeUp {
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+        .about-bit {
+
+            margin: 3px 0;
+            font-weight: 470;
+            margin-left: 50px;
+            font-size: 30px;
+              opacity: 0;
+    transform: translate3d(0, 150px, 0);
+
+    animation: smoothFadeUp 0.9s ease-out forwards;
+    will-change: transform, opacity;
+        }
+
+        .about-me {
+            margin: 3px 0;
+            margin-left: 50px;
+            font-size: 24px;
+             opacity: 0;
+    transform: translate3d(0, 150px, 0);
+
+    animation: smoothFadeUp 0.9s ease-out forwards;
+    will-change: transform, opacity;
+        }
+
+        .circles {
+            margin-top: 23px;
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .circle1 {
+            border-radius: 50%;
+            width: 160px;
+            cursor: pointer;
+            text-align: center;
+            align-content: center;
+            height: 160px;
+            font-size: 24px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 
+                0 8px 20px rgba(255, 107, 107, 0.5),
+                0 4px 10px rgba(0, 0, 0, 0.1),
+                inset 0 2px 10px rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .circle2 {
+            border-radius: 50%;
+            cursor: pointer;
+            width: 160px;
+            height: 160px;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            align-content: center;
+            background: linear-gradient(135deg, #4FACFE, #00F2FE);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 
+                0 8px 20px rgba(79, 172, 254, 0.5),
+                0 4px 10px rgba(0, 0, 0, 0.1),
+                inset 0 2px 10px rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .circle3 {
+            border-radius: 50%;
+            width: 160px;
+            cursor: pointer;
+            text-align: center;
+            align-content: center;
+            height: 160px;
+            font-size: 24px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #A8E063, #56AB2F);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 
+                0 8px 20px rgba(168, 224, 99, 0.5),
+                0 4px 10px rgba(0, 0, 0, 0.1),
+                inset 0 2px 10px rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        
+        .circle1::before, .circle2::before, .circle3::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 40%,
+                rgba(255, 255, 255, 0.4) 50%,
+                transparent 60%
+            );
+            transform: rotate(45deg);
+            animation: circleShine 3s linear infinite;
+        }
+
+        @keyframes circleShine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .circle1:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 
+                0 12px 30px rgba(255, 107, 107, 0.7),
+                0 6px 15px rgba(0, 0, 0, 0.2),
+                inset 0 3px 15px rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, #FF8E53, #FF6B6B);
+        }
+
+        .circle2:hover {
+            transform: scale(1.15) rotate(-5deg);
+            box-shadow: 
+                0 12px 30px rgba(79, 172, 254, 0.7),
+                0 6px 15px rgba(0, 0, 0, 0.2),
+                inset 0 3px 15px rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, #00F2FE, #4FACFE);
+        }
+
+        .circle3:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 
+                0 12px 30px rgba(168, 224, 99, 0.7),
+                0 6px 15px rgba(0, 0, 0, 0.2),
+                inset 0 3px 15px rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, #56AB2F, #A8E063);
+        }
+
+        /* Pulsing animation */
+        .circle1 {
+            animation: pulse1 3s ease-in-out infinite;
+        }
+
+        .circle2 {
+            animation: pulse2 3s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .circle3 {
+            animation: pulse3 3s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse1 {
+            0%, 100% {
+                box-shadow: 
+                    0 8px 20px rgba(255, 107, 107, 0.5),
+                    0 4px 10px rgba(0, 0, 0, 0.1),
+                    inset 0 2px 10px rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 
+                    0 10px 25px rgba(255, 107, 107, 0.7),
+                    0 5px 12px rgba(0, 0, 0, 0.15),
+                    inset 0 3px 12px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        @keyframes pulse2 {
+            0%, 100% {
+                box-shadow: 
+                    0 8px 20px rgba(79, 172, 254, 0.5),
+                    0 4px 10px rgba(0, 0, 0, 0.1),
+                    inset 0 2px 10px rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 
+                    0 10px 25px rgba(79, 172, 254, 0.7),
+                    0 5px 12px rgba(0, 0, 0, 0.15),
+                    inset 0 3px 12px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        @keyframes pulse3 {
+            0%, 100% {
+                box-shadow: 
+                    0 8px 20px rgba(168, 224, 99, 0.5),
+                    0 4px 10px rgba(0, 0, 0, 0.1),
+                    inset 0 2px 10px rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 
+                    0 10px 25px rgba(168, 224, 99, 0.7),
+                    0 5px 12px rgba(0, 0, 0, 0.15),
+                    inset 0 3px 12px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        @keyframes fontcolor {
+            from { color: black; }
+            to { color: rgb(240, 245, 109); }
+        }
+
+        .br-line {
+            margin-top: 230px;
+            height: 0.6px;
+            opacity: 0.4;
+            background-color: black;
+            width: 92%;
+        }
+
+        .container {
+            margin: auto;
+            display: flex;
+            margin-top: 55px;
+            margin-bottom: 100px;
+            flex-direction: row;
+            width: 1600px;
+            font-size: 20px;
+            gap: 20px;   
+            font-weight: 530;
+            text-align: center;           
+        }
+
+        .container div {
+            width: 100%;
+            display: inline-block;
+            gap: 10px;
+            flex-direction: row;
+        }
+
+        a img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .email {
+            margin-top: 10px;
+            display: flex;
+            align-self: center;
+        }
+
+        .social-media img {
+            transition: transform 0.3s ease-out;
+        }
+         
+        .social-media img:hover {
+            transform: scale(1.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="color-orb orb1"></div>
+    <div class="color-orb orb2"></div>
+    <div class="color-orb orb3"></div>
+    <div class="color-orb orb4"></div>
+    <div class="color-orb orb5"></div>
+
+    <header>
+        <ul class="header-home">
+            <li class="logo" style=" font-family: Caveat, cursive; font-size:60px;">Punna.in</li>
+            <li><a class="header-home1">Resume |</a></li>
+            <li><a class="header-home1">Projects |</a></li>
+            <li><a class="header-home1">Contact</a></li>
+        </ul>
+    </header>
+
+    <div class="main">
+        <div class="profile">
+        </div>
+        <div class="main-content">
+            <h1>Hii I'm Kiran Punna</h1>
+            <p class="about-bit">A Bit About Me</p>
+            <p class="about-me">3rd-year BTech student specializing in Machine Learning, Deep Learning, and Generative AI, focused on building intelligent, real-world solutions with measurable impact.</p>
+            <div>
+                <ul class="circles">
+                    <li>
+                        <div class="circle1">Resume</div>
+                    </li>
+                    <li>
+                        <div class="circle2">Projects</div>
+                    </li>
+                    <li>
+                        <div class="circle3">Contact</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr class="br-line">
+
+    <footer class="container">
+        <div>
+            <b>Phone</b>
+            <div>
+                <a class="linkedin" href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons"><img src="../images/viber.png"/></a> 
+                +91 9381911235
+            </div>
+        </div>
+        
+        <div>
+            <b>Email</b>
+            <div class="email">
+                kiranpunna58@gmail.com
+            </div>
+        </div>
+
+        <div>
+            <div style="margin-bottom: 15px;"><b>Follow Me On</b></div>
+            <div class="social-media">
+                <a class="linkedin" href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons"><img src="../images/linkedin.png"/></a>
+                <a class="linkedin" href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons"><img src="../images/github-sign.png"/></a>
+                <a class="linkedin" href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons"><img src="../images/instagram.png"/></a>
+            </div>
+        </div>
+
+        <div style="opacity: 0.6; font-size: 18px;">
+            ⓒ Kiran Punna 2025
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=phone_forwarded" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=mail" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+      body {
+            background-color: #f3f3f3;
+            margin: 0;
+            scroll-behavior: smooth;
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, 
+                rgba(144, 238, 144, 0.3), 
+                rgba(255, 255, 102, 0.3), 
+                rgba(255, 182, 193, 0.3),
+                rgba(173, 216, 230, 0.3),
+                rgba(221, 160, 221, 0.3));
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating color orbs */
+        .color-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(144, 238, 144, 0.5);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 102, 0.5);
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 182, 193, 0.5);
+            bottom: 10%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        .orb4 {
+            width: 280px;
+            height: 280px;
+            background: rgba(173, 216, 230, 0.5);
+            top: 30%;
+            right: 30%;
+            animation-delay: 3s;
+        }
+
+        .orb5 {
+            width: 200px;
+            height: 200px;
+            background: rgba(221, 160, 221, 0.5);
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, 50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, 80px) scale(0.9);
+            }
+            75% {
+                transform: translate(40px, -40px) scale(1.05);
+            }
+        }
+
+       .header-home {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            font-size: 22px;
+            gap: 13px;
+            padding: 20px 50px;
+            background-color: transparent;
+        }
+
+        .logo {
+            margin-right: auto;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .header-home li a {
+            text-decoration: none;
+            color: black;
+            margin-left: 5px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block; 
+        }
+
+        .header-home li a:hover {
+            color: rgb(240, 245, 109);
+            transform: scale(1.2); 
+            cursor: pointer;
+        }
+        
+
+@keyframes fontcolor{
+    from{color: black ;}
+    to{ color: rgb(240, 245, 109)}
+}
+        .br-line {
+            margin-top: 230px;
+            height: 0.6px;
+
+            background-color: black;
+            width: 92%;
+        }
+
+       .container {
+    margin:auto;
+    display: flex;
+    margin-top: 55px;
+    margin-bottom: 100px;
+    flex-direction: row;
+     width: 1600px;
+     height: 100px;
+     font-size: 20px;
+    gap: 20px;   
+    font-weight: 530;
+    text-align: center;           
+}
+.container div{
+    width: 100%;
+    display: inline-block;
+    gap: 10px;
+    flex-direction: row;
+}
+a img{
+    width:30px;
+    height: 30px;
+}
+.email{
+    margin-top: 10px;
+    display: flex;
+    align-self: center;
+}
+    .social-media img{
+      transition: transform 0.3 ease-out;
+    }
+     
+    .social-media img:hover{
+      transform: scale(1.4);
+    }
+
+        .resume {
+            padding-top: 56px;
+            max-width: 1500px;
+            font-size: 25px;
+ opacity: 0;
+    transform: translate3d(0, 150px, 0);
+
+    animation: smoothFadeUp 0.9s ease-out forwards;
+    will-change: transform, opacity;
+            margin: auto;
+        }
+
+        .resume h1 {
+            font-weight: 660;
+        }
+
+        .main-table {
+            padding-top: 48px;
+            width: 1300px;
+            margin: auto;
+            line-height: 25px;
+            /* border: 1px solid black; */
+            /* border-collapse: collapse; */
+            /* margin-right: 600px; */
+        }
+
+        .h-tl {
+            width: 660px;
+            font-size: 20px;
+
+        }
+
+        .h-th {
+            text-align: start;
+            padding-left: 50px;
+            font-size: 34px;
+        
+        }
+
+        .t-dt {
+            width: 610px;
+            font-size: 17px;
+        }
+
+        .br-line {
+            margin-top: 5px;
+            height: 0.2px;
+            opacity:0.4;
+
+            background-color: rgb(237, 234, 234);
+            width: 79.7%;
+        }
+.btn-resume {
+    height: 45px;
+    padding: 0 28px;
+    border-radius: 22px;
+    background: black;
+    float: right;
+
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    color: whitesmoke;
+    opacity: 0.9;
+
+    cursor: pointer;
+
+    /* 🔑 IMPORTANT */
+    transition: 
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+
+    will-change: transform;
+}
+
+
+.btn-resume:hover {
+    transform: scale(1.08) translate3d(0,0,0);
+}
+
+
+body::before,
+.color-orb {
+    pointer-events: none;
+}
+
+
+.btn-div {
+    margin-top: 70px;
+    max-width: 86.2%;
+}
+
+
+    .skills-div{
+        width: 100%;
+        height:37px;
+        font-weight: 700;
+        border: 2px solid black;
+        text-align: center;
+        align-content: center;
+        background-color: whitesmoke;
+border-radius: 30px;
+margin-bottom: 10px;
+
+    }
+    .ul-skills{
+        flex-wrap:nowrap;
+    list-style: none;
+        display: flex;
+        gap: 30px;
+        row-gap: 20px;
+    }
+    .ul-skills b{
+        font-size: 19px;
+    }
+
+    table{
+           opacity: 0;
+    transform: translate3d(0, 150px, 0);
+
+    animation: smoothFadeUp 0.9s ease-out forwards;
+    will-change: transform, opacity;   
+    }
+
+
+    @keyframes smoothFadeUp {
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+    </style>
+</head>
+
+<body>
+   
+    <div class="color-orb orb1"></div>
+    <div class="color-orb orb2"></div>
+    <div class="color-orb orb3"></div>
+    <div class="color-orb orb4"></div>
+    <div class="color-orb orb5"></div>
+    <header>
+        <ul class="header-home" >
+            <li class="logo" style=" font-family: Caveat, cursive; font-size:60px;">Punna.in</li>
+            <li><a class="header-home1">Resume |</a></li>
+            <li><a class="header-home1">Projects |</a></li>
+            <li><a class="header-home1">Contact</a></li>
+        </ul>
+    </header>
+
+
+    <div class="btn-div"><button class="btn-resume">Download Resume</button></div>
+
+
+    <div class="resume">
+        <h1>Resume</h1>
+    </div>
+
+    <table class="main-table" style="margin-top: 100px;">
+        <tr>
+            <th class="h-th">Work Experience</th>
+        </tr>
+        <tr>
+            <th></th>
+
+            <th class="h-tl" style="text-align: start; padding-left: 30px;">Infosys Springboard — AIML Intern (Nov 2025
+                – Present)</th>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td class="t-dt">
+                <ul>
+                    <li>Developed a personalized diet recommendation system using Python, Scikit-learn, TensorFlow, and
+                        Tesseract OCR.</li>
+                    <li>Designed an OCR → preprocessing → feature engineering pipeline, improving accuracy by 22%.</li>
+                    <li>Trained ML models achieving 89% accuracy.</li>
+                    <li>Deployed as a FastAPI/Flask service with sub-second response time.</li>
+                </ul>
+            </td>
+        </tr>
+
+
+
+    </table>
+
+
+   <hr class="br-line">
+ 
+ <table class="main-table">
+        <tr>
+            <th class="h-th">Education</th>
+        </tr>
+        <tr>
+            <th></th>
+
+            <th class="h-tl" style="text-align: start; padding-left: 30px;">B.Tech (CSE–AI), Annamacharya Institute of Technology & Sciences 
+2023 – Present | CGPA: 9.3</th>
+        </tr>
+    </table>
+
+      <hr class="br-line" style="margin-top: 25px;">
+
+
+
+      
+
+
+<table class="main-table">
+        <tr>
+            <th class="h-th">Skills</th>
+        </tr>
+        <tr>
+            <th></th>
+
+            <th class="h-tl" style="text-align: start; padding-left: 30px;"></th>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td class="t-dt">
+                <ul class="ul-skills">
+                    <li><b>Programming Languages:</b> <div class="skills-div">Python</div> <div class="skills-div">Java</div> <div class="skills-div">SQL</div><div class="skills-div">JavaScript</div>  
+                        <b>Generative AI Applications:</b>
+<div class="skills-div" style="height: 100px;">Large Language Models (LLMs)</div>
+<div class="skills-div" style="height: 100px;">LangChain (LLM Orchestration)</div>
+<div class="skills-div" style="height: 100px;">Hugging Face (Transformers)</div>
+<div class="skills-div" style="height: 100px;">Prompt Engineering</div>
+<div class="skills-div" style="height: 100px;">Retrieval-Augmented Generation (RAG)</div>
+
+
+
+                    <li><b>Databases:</b>  <div class="skills-div">PostgreSQL</div>  <div class="skills-div">MySQL</div>  <div class="skills-div">MongoDB</div> 
+                        <b> Vector Databases:</b>  <div class="skills-div">Pinecone</div>
+                         <div class="skills-div">Chroma</div>
+                        
+                    </li>
+
+
+                    <li> 
+<b>Frameworks & Libraries:</b> 
+<div class="skills-div">PyTorch</div> 
+<div class="skills-div">Scikit-learn</div> 
+<div class="skills-div">NumPy</div> 
+<div class="skills-div">Pandas</div> 
+<div class="skills-div">Matplotlib</div> 
+<div class="skills-div">Seaborn</div> 
+<div class="skills-div">FastAPI</div> 
+<div class="skills-div">Flask</div> 
+<div class="skills-div">React</div> 
+<div class="skills-div">Streamlit</div> 
+ </li>
+               
+
+<li>
+
+    <b>Tools:</b>
+    <div class="skills-div">Git</div> 
+    <div class="skills-div">GitHub</div> 
+    <div class="skills-div">Postman</div> 
+
+</li>
+
+<li><b>ML & Data Skills:</b>
+    <div class="skills-div" style="height: 50px;">Machine Learning</div> 
+    <div class="skills-div" style="height: 120px; width:190px;">Deep Learning (CNNs, RNNs, LSTMs, GRUs, Transformers)</div> 
+    <div class="skills-div" style="height: 50px;">NLP (NLTK, 
+BeautifulSoup)</div> 
+    <div class="skills-div"> Data Visualization</div> 
+    <div class="skills-div">Data Preprocessing </div> 
+
+   </li>
+
+                </ul>
+            </td>
+        </tr>
+
+
+
+    </table>
+
+
+ <hr class="br-line">
+    
+
+<table class="main-table" style="margin-bottom: 200px;">
+        <tr>
+            <th class="h-th">Achievements </th>
+        </tr>
+        <tr>
+            <th></th>
+
+            <th class="h-tl" style="text-align: start; padding-left: 30px;"></th>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td class="t-dt">
+                <ul>
+
+                    <li><b>ML Mania — National Level Tech Fest:</b> Secured 2nd place at Project Explore for the NoteCraft project.</li>
+                    <li><b>Touchstone Elocution Competition:</b>  Winner of college-level elocution and essay writing competitions. </li>
+                    <li> 
+<b>Young Trucks Competition — Naukri:</b>Secured 98.5 percentile at the national level. </li>
+                    <li>
+<b>ATF-ALGO Scholarship Program — Nationwide:</b> Achieved Top 7.8% in coding rounds and applications. </li>
+                </ul>
+            </td>
+        </tr>
+
+
+
+    </table>
+        
+ <!--  -->
+
+     <hr class="br-line" style="width: 93.5%; opacity: 0.9;" >
+
+
+       <footer class="container">
+    <div>
+      <b>Phone</b>
+      <div>
+
+        <a class="linkedin" href="" title="linkedin icons"><img
+            src="../images/viber.png" /></a>
+        +91 9381911235
+      </div>
+
+    </div>
+
+    <div>
+      <b>Email</b>
+      <div class="email">
+        kiranpunna58@gmail.com
+      </div>
+    </div>
+
+    <div>
+      <div style="margin-bottom: 15px;"><b>Follow Me On</b></div>
+
+      <div class="social-media">
+        <a class="linkedin" href="" title="linkedin icons"><img 
+            src="../images/linkedin.png" /></a>
+        <a class="linkedin" href="" title="linkedin icons"><img
+            src="../images/github-sign.png" /></a>
+        <a class="linkedin" href="" title="linkedin icons"><img
+            src="../images/instagram.png" /></a>
+
+      </div>
+    </div>
+
+    <div style="opacity: 0.6; font-size: 18px;">
+      ⓒ Kiran Punna 2025
+    </div>
+
+  </footer>
+<!-- <div style="height: 300px;"></div> -->
+</body>
+
+</html>

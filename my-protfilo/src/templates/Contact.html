@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Merriweather&family=Montserrat:wght@100..900&family=Playfair+Display&display=swap"
+        rel="stylesheet">
+
+    <title>Contact</title>
+
+    <style>
+        body {
+            background-color: #f3f3f3;
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, 
+                rgba(144, 238, 144, 0.3), 
+                rgba(255, 255, 102, 0.3), 
+                rgba(255, 182, 193, 0.3),
+                rgba(173, 216, 230, 0.3),
+                rgba(221, 160, 221, 0.3));
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating color orbs */
+        .color-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(144, 238, 144, 0.5);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 102, 0.5);
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 182, 193, 0.5);
+            bottom: 10%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        .orb4 {
+            width: 280px;
+            height: 280px;
+            background: rgba(173, 216, 230, 0.5);
+            top: 30%;
+            right: 30%;
+            animation-delay: 3s;
+        }
+
+        .orb5 {
+            width: 200px;
+            height: 200px;
+            background: rgba(221, 160, 221, 0.5);
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, 50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, 80px) scale(0.9);
+            }
+            75% {
+                transform: translate(40px, -40px) scale(1.05);
+            }
+        }
+
+        .header-home {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            font-size: 22px;
+            gap: 13px;
+            padding: 20px 50px;
+            background-color: transparent;
+        }
+
+        .logo {
+            margin-right: auto;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .header-home li a {
+            text-decoration: none;
+            color: black;
+            margin-left: 5px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block; 
+        }
+
+        .header-home li a:hover {
+            color: rgb(240, 245, 109);
+            transform: scale(1.2); 
+            cursor: pointer;
+        }
+
+        .container-detail {
+            padding-top: 100px;
+            margin: auto;
+            display: flex;
+            margin-top: 60px;
+            margin-bottom: 100px;
+            width: 1200px;
+            font-size: 20px;
+            gap: 20px;
+               opacity: 0;
+    transform: translate3d(0, 150px, 0);
+
+    animation: smoothFadeUp 0.9s ease-out forwards;
+    will-change: transform, opacity;   
+        }
+
+        @keyframes fontcolor {
+            from {color: black;}
+            to {color: rgb(200, 245, 109)}
+        }
+
+        .details {
+            max-width: 40%;
+            padding-right: 50px;
+            text-align: start;
+        }
+
+        .first-input {
+            display: flex;
+            gap: 0px;
+            text-align: start;
+        }
+
+        .first-input div {
+            width: 100%;
+        }
+
+        .first-input input {
+            height: 40px;
+            width: 90%;
+        }
+
+        .container {
+            margin: auto;
+            display: flex;
+            margin-top: 55px;
+            margin-bottom: 100px;
+            flex-direction: row;
+            width: 1600px;
+            height: 70px;
+            font-size: 20px;
+            gap: 20px;   
+            font-weight: 530;
+            text-align: center;    
+              
+        }
+
+        
+@keyframes smoothFadeUp {
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+        .container div {
+            width: 100%;
+            display: inline-block;
+            gap: 10px;
+            flex-direction: row;
+        }
+
+        a img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .email {
+            margin-top: 10px;
+            display: flex;
+            align-self: center;
+        }
+
+        .social-media img {
+            transition: transform 0.3s ease-out;
+        }
+         
+        .social-media img:hover {
+            transform: scale(1.4);
+        }
+
+        .btn {
+            width: 19%;
+            height: 54px;
+            font-size: 27px;
+            border-radius: 20px;
+            background-color: black;
+            color: whitesmoke;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+        }
+
+        /* .btn:hover {
+            transform: scale(0.9);
+            background-color: transparent;
+            color: black;
+          
+        } */
+
+        
+        .btn:hover {
+            animation: btn-color 0.3s ease-in-out forwards;
+            transform: scale(1.05);
+        }
+
+        @keyframes btn-color {
+            from { background-color: black }
+            to { background-color:transparent ;
+            color: black;
+        border: 1px solid black;}
+        }
+     
+
+        .btn-div {
+            margin-top: 20px;
+        }
+
+        form input {
+            font-size: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;   
+            font-weight: 500;
+        }
+
+        .first-input input {
+            margin-top: 4px;
+        }
+
+        input {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        textarea {
+            border-radius: 10px;
+            font-size: 20px;
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating color orbs -->
+    <div class="color-orb orb1"></div>
+    <div class="color-orb orb2"></div>
+    <div class="color-orb orb3"></div>
+    <div class="color-orb orb4"></div>
+    <div class="color-orb orb5"></div>
+
+    <header>
+        <ul class="header-home">
+            <li class="logo" style=" font-family: Caveat, cursive; font-size:60px;">Punna.in</li>
+            <li><a class="header-home1">Resume |</a></li>
+            <li><a class="header-home1">Projects |</a></li>
+            <li><a class="header-home1">Contact</a></li>
+        </ul>
+    </header>
+
+    <div class="container-detail">
+        <div class="details">
+            <h1>Contact</h1>
+            <p>Looking forward to hearing from you</p>
+            <h3>Phone</h3>
+            <p>+91 9381911235</p>
+            <h3>Email</h3>
+            <p>kiranpunna58@gmail.com</p>
+        </div>
+
+        <div class="form-detail" style="margin-top: 18px;">
+            <form>
+                <div class="first-input">
+                    <div>
+                        <label for="first-name">First Name *</label>
+                        <input type="text" id="first-name">
+                    </div>
+
+                    <div>
+                        <label for="last-name">Last Name *</label>
+                        <input type="text" id="last-name">
+                    </div>
+                </div>
+
+                <div class="first-input" style="margin-top: 30px;">
+                    <div>
+                        <label for="email">Email *</label>
+                        <input type="email" id="email">
+                    </div>
+
+                    <div>
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject">
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <label for="message">Message</label><br>
+                    <textarea name="message" id="text-area" cols="64.3" rows="5.4"></textarea>
+                </div>
+                
+                <div class="btn-div">
+                    <button class="btn" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <hr style="width:93.5%; opacity:0.9; margin-top: 340px;">
+
+    <footer class="container">
+        <div>
+            <b>Phone</b>
+            <div>
+                <a class="linkedin" href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons"><img src="../images/viber.png"/></a> 
+                +91 9381911235
+            </div>
+        </div>
+        
+        <div>
+            <b>Email</b>
+            <div class="email">
+                kiranpunna58@gmail.com
+            </div>
+        </div>
+
+        <div>
+            <div style="margin-bottom: 15px;"><b>Follow Me On</b></div>
+            <div class="social-media">
+                <a class="linkedin" href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons"><img src="../images/linkedin.png"/></a>
+                <a class="linkedin" href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons"><img src="../images/github-sign.png"/></a>
+                <a class="linkedin" href="https://www.flaticon.com/free-icons/linkedin" title="linkedin icons"><img src="../images/instagram.png"/></a>
+            </div>
+        </div>
+
+        <div style="opacity: 0.6; font-size: 18px;">
+            ⓒ Kiran Punna 2025
+        </div>
+    </footer>
+</body>
+</html>

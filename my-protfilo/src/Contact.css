@@ -1,0 +1,172 @@
+
+        .container-detail {
+            padding-top: 100px;
+            margin: auto;
+            display: flex;
+            margin-top: 30px;
+            margin-bottom: 100px;
+            width: 850px;
+            font-size: 15px;
+            gap: 20px;
+               opacity: 0;
+    transform: translate3d(0, 150px, 0);
+
+    animation: smoothFadeUp 0.9s ease-out forwards;
+    will-change: transform, opacity;   
+        }
+
+        @keyframes fontcolor {
+            from {color: black;}
+            to {color: rgb(200, 245, 109)}
+        }
+
+        .details {
+            max-width: 40%;
+            padding-right: 30px;
+            text-align: start;
+        }
+
+        .first-input {
+            display: flex;
+            gap: 0px;
+            text-align: start;
+        }
+
+        .first-input div {
+            width: 80%;
+        }
+
+        .first-input input {
+            height: 40px;
+            width: 90%;
+        }
+
+        .container {
+            margin: auto;
+            display: flex;
+            margin-top: 55px;
+            margin-bottom: 100px;
+            flex-direction: row;
+            width: 1200px;
+            height: 70px;
+            font-size: 15px;
+            gap: 20px;   
+            font-weight: 530;
+            text-align: center;    
+              
+        }
+
+        
+@keyframes smoothFadeUp {
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+        .container div {
+            width: 90%;
+            display: inline-block;
+            gap: 10px;
+            flex-direction: row;
+        }
+
+        a img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .email {
+            margin-top: 10px;
+            display: flex;
+            align-self: center;
+        }
+.social-media {
+  display: flex;      /* puts images in a row */
+  gap: 20px;          /* space between images */
+}
+
+
+        .social-media img {
+            transition: transform 0.3s ease-out;
+            width: 30px;
+            height: 30px;
+            margin-left: 20px;
+            
+            
+        }
+        .phone{
+             width: 30px;
+            height: 30px;
+            gap: 20px;
+        }
+         
+        .social-media img:hover {
+            transform: scale(1.4);
+        }
+
+        .btn {
+            width: 22%;
+            height: 42px;
+            font-size: 25px;
+            border-radius: 13px;
+            background-color: black;
+            color: whitesmoke;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+        }
+
+        /* .btn:hover {
+            transform: scale(0.9);
+            background-color: transparent;
+            color: black;
+          
+        } */
+
+        
+        .btn:hover {
+            animation: btn-color 0.3s ease-in-out forwards;
+            transform: scale(1.05);
+        }
+
+        @keyframes btn-color {
+            from { background-color: black }
+            to { background-color:transparent ;
+            color: black;
+        border: 1px solid black;}
+        }
+     
+
+        .btn-div {
+            margin-top: 20px;
+        }
+
+        form input {
+            font-size: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;   
+            font-weight: 500;
+        }
+
+        .first-input input {
+            margin-top: 3px;
+        }
+
+        input {
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            padding: 9px;
+        }
+
+        textarea {
+            border-radius: 10px;
+            font-size: 20px;
+            width: 501px;
+            border: 1px solid #ccc;
+            /* padding: 8px; */
+        }

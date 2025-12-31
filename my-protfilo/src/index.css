@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+/* ==========================
+   GLOBAL RESET
+========================== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* ==========================
+   BODY (GLOBAL BACKGROUND)
+========================== */
+body {
+  margin: 0;
+  background-color: #f3f3f3;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated Background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    rgba(144, 238, 144, 0.3),
+    rgba(255, 255, 102, 0.3),
+    rgba(255, 182, 193, 0.3),
+    rgba(173, 216, 230, 0.3),
+    rgba(221, 160, 221, 0.3)
+  );
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ==========================
+   ROOT CONTAINER
+========================== */
+#root {
+  min-height: 100vh;        /* THIS IS IMPORTANT */
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
