@@ -6,7 +6,7 @@ function Chatbot(){
          <div className="chat-container">
         <div className="chat-messages" id="chatMessages">
             <div className="welcome-message">
-                <h2>Welcome to AI Assistant</h2>
+                <h2>Welcome to Spirit AI Assistant</h2>
                 <p>How can I help you today?</p>
             </div>
 

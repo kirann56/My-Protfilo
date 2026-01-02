@@ -21,7 +21,7 @@ function Footer() {
           <b>Follow Me On</b>
         </div>
         <div className="social-media">
-          <a href="www.linkedin.com/in/kiran-punna-b50774330" target="_blank">
+          <a href="https://www.linkedin.com/in/kiran-punna-b50774330/" target="_blank">
             <img src="/images/linkedin (1).png" alt="linkedin" />
           </a>
           <a href="https://github.com/Mr-kiran56" target="_blank">
