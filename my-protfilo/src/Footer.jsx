@@ -11,7 +11,7 @@ function Footer() {
         </div>
       </div>
 
-      <div>
+      <div className="social-media">
         <b>Email</b>
         <div className="email">kiranpunna58@gmail.com</div>
       </div>
@@ -21,14 +21,14 @@ function Footer() {
           <b>Follow Me On</b>
         </div>
         <div className="social-media">
-          <a>
-            <img src="/images/linkedin.png" alt="linkedin" />
+          <a href="www.linkedin.com/in/kiran-punna-b50774330" target="_blank">
+            <img src="/images/linkedin (1).png" alt="linkedin" />
           </a>
-          <a>
-            <img src="/images/github-sign.png" alt="github" />
+          <a href="https://github.com/Mr-kiran56" target="_blank">
+            <img src="/images/github.png" alt="github" />
           </a>
-          <a>
-            <img src="/images/instagram.png" alt="instagram" />
+          <a href="https://leetcode.com/u/kiran_punna/" target="_blank">
+            <img src="/images/leetcode.png" alt="leetcode" />
           </a>
         </div>
       </div>

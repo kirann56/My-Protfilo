@@ -33,8 +33,12 @@
 }
 
 .details h1 {
-    font-size: 38px;
+    font-size: 35px;
     margin-bottom: 15px;
+}
+.details h3 {
+    font-size: 25px;
+    
 }
 
 .details p {

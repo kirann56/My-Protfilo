@@ -1,10 +1,17 @@
 import "./Intro.css";
 import "./App.css"
 import Footer from "./Footer";
-function Intro() {
+import { Link } from "react-router-dom";
+function Intro({ShowAlert}) {
+
+
+
   return (
     <>
     {/* <Background/> */}
+    
+
+
       <div className="main">
         <div className="profile"></div>
 
@@ -18,9 +25,11 @@ function Intro() {
           </p>
 
           <ul className="circles">
-            <li><div className="circle1">Resume</div></li>
-            <li><div className="circle2">Projects</div></li>
-            <li><div className="circle3">Contact</div></li>
+            <Link  onClick={()=>ShowAlert('resume')} className="link" to="/resume"><li> <div className="circle1">Resume</div></li></Link>
+                   <Link to="/project" className="link">    <li><div className="circle2">Projects</div></li></Link>
+                          <Link to="/contact" className="link">    <li><div className="circle3">Contact</div></li></Link>
+         
+        
           </ul>
         </div>
       </div>
