@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     database_port:int
     db_name:str
     secret_key:str
-    algoritm:str
+    algorithm:str
     expire_time:int
     
     model_config = SettingsConfigDict(

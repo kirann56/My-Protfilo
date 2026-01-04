@@ -38,7 +38,7 @@ def get_project(project_id:int,db:Session=Depends(get_db)):
     post=db.query(models.PROJECTS).filter(models.PROJECTS.project_id==project_id).first()
 
     if not post:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"Post with id {id} was not Found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"Post with id {id}\t was not Found")
     return post
 
 
