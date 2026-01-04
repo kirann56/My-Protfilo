@@ -7,8 +7,12 @@ class Settings(BaseSettings):
     host:str
     database_port:int
     db_name:str
+    secret_key:str
+    algoritm:str
+    expire_time:int
+    
     model_config = SettingsConfigDict(
         env_file=".env",
-        extra="allow"   # <-- allow unknown fields
+        extra="allow"   
     )
 settings = Settings()
