@@ -12,7 +12,10 @@ class CREATEUSER(Base):
     email=Column(String,nullable=False,unique=True)
     password=Column(String,nullable=False)
     created_at=Column(TIMESTAMP(timezone=True),server_default=(('now()')))
-
+    usercomments=relationship('COMMENTS',back_populates='comments')
+    userprofileupvote=relationship('PROFILE_UPVOTE',back_populates='profile_upvote')
+    userprojectupvote=relationship('PROJECT_UPVOTE').back_populates('project_upvote')
+    
 
 class CONTACT(Base):
     __tablename__ = "contact"
@@ -26,7 +29,8 @@ class CONTACT(Base):
     sent_at = Column(
         TIMESTAMP(timezone=True),
         server_default=text("now()"))
-    contact=relationship('COMMENTS',back_populates='comments')
+    
+
     
 
 class PROJECTS(Base):
@@ -46,7 +50,21 @@ class COMMENTS(Base):
     user_id=Column(Integer,ForeignKey('contact.user_id',ondelete='CASCADE'))
     project_id=Column(Integer,nullable=False,primary_key=True)
     comment=Column(String,nullable=False)
-    comments=relationship('CONTACT',back_populates='contact')
+    username=Column(String,ForeignKey('createuser.username',ondelete='CASCADE'))
+    comments=relationship('CREATEUSER',back_populates='usercomments')
+
+class PROFILE_UPVOTE(Base):
+    __tablename__='profile_upvote'
+    user_id=Column(Integer,ForeignKey('createuser.user_id',ondelete='CASCADE'))
+    profile_upvote=relationship('CREATEUSER',back_populates='userprofileupvote')
+
+class PROJECT_UPVOTE(Base):
+    __tablename__='project_upvotes'
+    user_id=Column(Integer,ForeignKey('createuser.user_id',ondelete='CASCADE'))
+    project_id=Column(Integer,nullable=False,unique=True)
+    project_upvote=relationship('CREATEUSER',back_populates='userprojectupvote')
+
+
 
 
     
