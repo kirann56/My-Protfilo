@@ -72,6 +72,29 @@
            
         }
 
+       .profile-social-media {
+    position: absolute;
+    top: 620px;
+    left: 210px;
+    display: flex;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+        
+        .social-media-new img {
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            height: 50px;
+            width: 50px;
+            align-items: center;
+            margin-left: 50px;
+
+        }
+       .social-media-new img:hover{
+        cursor: pointer;
+    transform: scale(1.2) rotate(-15deg) translateY(-3px);
+        }
+
         .sentence-container{
         margin-bottom:"90px";
         margin-left: 200px;

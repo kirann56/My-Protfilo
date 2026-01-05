@@ -59,7 +59,8 @@ function Intro({ShowAlert}) {
           <p className="about-bit">A Bit About Me</p>
           <p className="about-me">
             3rd-year BTech student specializing in Machine Learning, Deep Learning,
-            and Generative AI, focused on building intelligent, real-world solutions
+            and Generative AI, focused on building intelligent,
+             real-world solutions
             with measurable impact.
           </p>
 
@@ -71,8 +72,20 @@ function Intro({ShowAlert}) {
         
           </ul>
         </div>
+     
       </div>
-
+<div className="profile-social-media">
+   <div className="social-media-new">
+          <a href="https://www.linkedin.com/in/kiran-punna-b50774330/" target="_blank">
+            <img  src="/images/linkedin (1).png" alt="linkedin" />
+          </a>
+          <a href="https://github.com/Mr-kiran56" target="_blank">
+            <img  src="/images/github.png" alt="github" />
+          </a>
+          <a href="https://leetcode.com/u/kiran_punna/" target="_blank">
+            <img  src="/images/leetcode.png" alt="leetcode" />
+          </a>
+        </div></div>
       <hr className="br-line" style={{ margin:"auto"}} />
 
       <Footer/>
