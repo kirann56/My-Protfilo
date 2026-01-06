@@ -169,48 +169,6 @@ body {
             }
         }
 
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.header-home {
-  max-width: 1400px;     
-  margin: 14px auto;
-
-  padding: 0 40px;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-.header-home li:not(.logo) {
-  margin-left: 0px;
-}
-
-.logo {
-  margin-right: auto;   
-}
-
-        .header-home li a {
-            text-decoration: none;
-            color: black;
-            margin-left: 0px;
-            font-weight: 500;
-            transition: color 0.3s ease, transform 0.3s ease;
-            display: inline-block; 
-        }
-
-        .header-home li a:hover {
-          cursor: pointer;
-            color: whitesmoke;
-            transform: scale(1.2); 
-            
-        }
-
-
 
         .container {
             margin: auto;

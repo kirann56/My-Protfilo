@@ -48,7 +48,7 @@ function Contact() {
               <textarea id="text-area" rows="5"></textarea>
             </div>
 
-            <div className="btn-div">
+            <div className="btn-div-contact">
               <button className="btn" type="submit">
                 Submit
               </button>
