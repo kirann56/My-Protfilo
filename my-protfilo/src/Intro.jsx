@@ -1,38 +1,77 @@
 import "./Intro.css";
-import "./App.css"
+import "./App.css";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import Footer from "./Footer";
-import { Link } from "react-router-dom";
 import SideCard from "./SideCard";
-function Intro({ShowAlert}) {
-  
-  const [displayText, setDisplayText] = useState('');
+
+function Intro({ ShowAlert }) {
+
+
+  const [displayText, setDisplayText] = useState({
+    normal: "",
+    highlight: ""
+  });
   const [sentenceIndex, setSentenceIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
   const sentences = [
-    "Welcome to my AI-powered profile — I'm Kiran Punna.",
-    "I build intelligent, scalable solutions using Machine Learning and Generative AI.",
-    "Discover my technical journey, projects, and problem-solving approach.",
-    "Interact with my personal AI bot to get detailed insights and information."
+    {
+      normal: "Welcome to my AI-powered profile — ",
+      highlight: "I'm Kiran Punna."
+    },
+    {
+      normal: "I build intelligent, scalable solutions using ",
+      highlight: "Machine Learning and Generative AI."
+    },
+    {
+      normal: "Discover my technical journey, projects, and ",
+      highlight: "problem-solving approach."
+    },
+    {
+      normal: "Interact with my personal AI bot to get ",
+      highlight: "detailed insights and information."
+    }
   ];
 
+  
   useEffect(() => {
-    const currentSentence = sentences[sentenceIndex];
-    const typingSpeed = isDeleting ? 10 : 12;
-    const pauseBeforeDelete = 3000;
+    const current = sentences[sentenceIndex];
+    const fullText = current.normal + current.highlight;
+
+    const typedLength =
+      displayText.normal.length + displayText.highlight.length;
+
+    const typingSpeed = isDeleting ? 8 : 8;
+    const pauseBeforeDelete = 2500;
 
     const timer = setTimeout(() => {
-      if (!isDeleting && displayText === currentSentence) {
+      if (!isDeleting && typedLength === fullText.length) {
         setTimeout(() => setIsDeleting(true), pauseBeforeDelete);
-      } else if (isDeleting && displayText === '') {
+      } 
+      else if (isDeleting && typedLength === 0) {
         setIsDeleting(false);
         setSentenceIndex((prev) => (prev + 1) % sentences.length);
-      } else if (isDeleting) {
-        setDisplayText(currentSentence.substring(0, displayText.length - 1));
-      } else {
-        setDisplayText(currentSentence.substring(0, displayText.length + 1));
+      } 
+      else {
+        const newLength = isDeleting
+          ? typedLength - 1
+          : typedLength + 1;
+
+        const normalPart = fullText.slice(0, current.normal.length);
+        const highlightPart = fullText.slice(current.normal.length);
+
+        setDisplayText({
+          normal: normalPart.slice(
+            0,
+            Math.min(newLength, normalPart.length)
+          ),
+          highlight:
+            newLength > normalPart.length
+              ? highlightPart.slice(0, newLength - normalPart.length)
+              : ""
+        });
       }
     }, typingSpeed);
 
@@ -41,17 +80,19 @@ function Intro({ShowAlert}) {
 
   return (
     <>
+      
       <div className="sentence-container">
         <div className="animated-sentence">
-          {displayText}
+          {displayText.normal}
+          <span id="inner-text">{displayText.highlight}</span>
           <span className="cursor">|</span>
-        </div> 
+        </div>
       </div>
-      <SideCard/>
-      
+
+      <SideCard />
+
+     
       <div className="main">
-      
-       
         <div className="profile"></div>
 
         <div className="main-content">
@@ -59,36 +100,68 @@ function Intro({ShowAlert}) {
           <p className="about-bit">A Bit About Me</p>
           <p className="about-me">
             3rd-year BTech student specializing in Machine Learning, Deep Learning,
-            and Generative AI, focused on building intelligent,
-             real-world solutions
+            and Generative AI, focused on building intelligent, real-world solutions
             with measurable impact.
           </p>
 
           <ul className="circles">
-            <Link  onClick={()=>ShowAlert('resume')} className="link" to="/resume"><li> <div className="circle1">Resume</div></li></Link>
-                   <Link to="/project" className="link">    <li><div className="circle2">Projects</div></li></Link>
-                          <Link to="/contact" className="link">    <li><div className="circle3">Contact</div></li></Link>
-         
-        
+            <Link
+              className="link"
+              to="/resume"
+              onClick={() => ShowAlert("resume")}
+            >
+              <li>
+                <div className="circle1">Resume</div>
+              </li>
+            </Link>
+
+            <Link className="link" to="/project">
+              <li>
+                <div className="circle2">Projects</div>
+              </li>
+            </Link>
+
+            <Link className="link" to="/contact">
+              <li>
+                <div className="circle3">Contact</div>
+              </li>
+            </Link>
           </ul>
         </div>
-     
       </div>
-<div className="profile-social-media">
-   <div className="social-media-new">
-          <a href="https://www.linkedin.com/in/kiran-punna-b50774330/" target="_blank">
-            <img  src="/images/linkedin (1).png" alt="linkedin" />
-          </a>
-          <a href="https://github.com/Mr-kiran56" target="_blank">
-            <img  src="/images/github.png" alt="github" />
-          </a>
-          <a href="https://leetcode.com/u/kiran_punna/" target="_blank">
-            <img  src="/images/leetcode.png" alt="leetcode" />
-          </a>
-        </div></div>
-      <hr className="br-line" style={{ margin:"auto"}} />
 
-      <Footer/>
+     
+      <div className="profile-social-media">
+        <div className="social-media-new">
+          <a
+            href="https://www.linkedin.com/in/kiran-punna-b50774330/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="/images/linkedin (1).png" alt="linkedin" />
+          </a>
+
+          <a
+            href="https://github.com/Mr-kiran56"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="/images/github.png" alt="github" />
+          </a>
+
+          <a
+            href="https://leetcode.com/u/kiran_punna/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="/images/leetcode.png" alt="leetcode" />
+          </a>
+        </div>
+      </div>
+
+      <hr className="br-line" style={{ margin: "auto" }} />
+
+      <Footer />
     </>
   );
 }
