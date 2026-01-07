@@ -1,6 +1,3 @@
-
-
-
 function Alert(props){
     return (
     <>

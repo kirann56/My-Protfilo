@@ -24,7 +24,7 @@ def profile_upvote(db:Session=Depends(get_db),get_current_user:int=Depends(get_c
 
 
 @router.get('/getall-upvotes')
-def get_all_upvotes(db: Session = Depends(get_db),get_current_user:int=Depends(get_current_user)):
+def get_all_upvotes(db: Session = Depends(get_db)):
 
     total_upvotes = db.query(models.PROFILE_UPVOTE).count()
     return {

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr,conint
+from pydantic import BaseModel, EmailStr,conint,Field
 from datetime import datetime
 from typing import Optional
 
@@ -11,17 +11,28 @@ class ContactDetail(BaseModel):
     datetime: datetime
 
 class ProjectsDetail(BaseModel):
-    ProjectName:str
-    ProjectContent:str
-    TechStcak:str
-    GitHubLink:str
-    PreviewLink:str
-    ImageUrl:str
+    ProjectName: str
+    ProjectContent: str
+    TechStack: str = Field(alias="TechStcak")
+    GitHubLink: Optional[str] = None
+    PreviewLink: Optional[str] = None
+    ImageUrl: Optional[str] = None
 
-class ProjectShow(ProjectsDetail):
-    project_id:int
+
+class ProjectShow(BaseModel):
+    project_id: int
+    ProjectName: str
+    ProjectContent: str
+    TechStack: str = Field(alias="TechStcak")
+    GitHubLink: Optional[str]
+    PreviewLink: Optional[str]
+    ImageUrl: Optional[str]
+
     class Config:
-        orm_mode=True
+        orm_mode = True
+        from_attributes = True        # Pydantic v2
+        populate_by_name = True
+
 
     
 class Comments(BaseModel):

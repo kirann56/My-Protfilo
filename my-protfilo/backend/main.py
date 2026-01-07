@@ -1,9 +1,20 @@
 from fastapi import FastAPI
 from backend.Database import engine, Base
+from fastapi.middleware.cors import CORSMiddleware
 from backend.routes import contact,projects,comments,user,login,profie_upvote,project_upvote
 app = FastAPI()
 
 Base.metadata.create_all(bind=engine)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://localhost:5174"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 app.include_router(contact.router)
 app.include_router(projects.router)

@@ -1,6 +1,6 @@
 # backend/models/contact.py
 
-from sqlalchemy import Column, Integer, String, TIMESTAMP, text,ForeignKey
+from sqlalchemy import Column, Integer, String, TIMESTAMP, text,ForeignKey,URL
 from backend.Database import Base
 from sqlalchemy.orm import relationship
 

@@ -2,11 +2,32 @@ import "./Intro.css";
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import api from "./Api";
 import Footer from "./Footer";
 import SideCard from "./SideCard";
 
 function Intro({ ShowAlert }) {
+  const [profileLikes, setprofileLikes] = useState([]);
+
+
+  useEffect(() => {
+  const Upvotes= async()=>{
+    try{
+    const votes=await api.get('/profile_upvote/getall-upvotes');
+    setprofileLikes(votes.data)
+    console.log(votes.data);}
+    catch (error){
+      console.error(error);
+    }
+  };
+
+Upvotes();
+
+  }, [])
+  
+
+
+
 
 
   const [displayText, setDisplayText] = useState({
@@ -30,7 +51,7 @@ function Intro({ ShowAlert }) {
       highlight: "problem-solving approach."
     },
     {
-      normal: "Interact with my personal AI bot to get ",
+      normal: "Interact with my Spirit AI bot to get ",
       highlight: "detailed insights and information."
     }
   ];
@@ -156,6 +177,15 @@ function Intro({ ShowAlert }) {
           >
             <img src="/images/leetcode.png" alt="leetcode" />
           </a>
+
+            <a
+            // href="https://leetcode.com/u/kiran_punna/"
+            // target="_blank"
+            // rel="noreferrer"
+          >
+            <img src="/images/upvote.png" alt="leetcode" /> {profileLikes.total_profile_upvotes}<h6>People Liked This Profile</h6>
+          </a>
+
         </div>
       </div>
 
