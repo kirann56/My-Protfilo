@@ -183,7 +183,7 @@ Upvotes();
             // target="_blank"
             // rel="noreferrer"
           >
-            <img src="/images/upvote.png" alt="leetcode" /> {profileLikes.total_profile_upvotes}<h6>People Liked This Profile</h6>
+            <img className="upvote" src="/images/upvote.png" alt="leetcode" /> {profileLikes.total_profile_upvotes}<h6>People Liked This Profile</h6>
           </a>
 
         </div>
