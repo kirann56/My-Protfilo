@@ -23,6 +23,8 @@ export default function Projects() {
   }, []);
   
 
+  
+
   return (
     <>
       <div className="projects-container" id="projects">
@@ -93,7 +95,7 @@ export default function Projects() {
                     rel="noreferrer"
                   >
                     <img
-                      src="https://cdn-icons-png.flaticon.com/128/709/709612.png"
+                      src="/images/preview.png"
                       alt="GitHub"
                     />
                   </a>
@@ -105,10 +107,39 @@ export default function Projects() {
                     rel="noreferrer"
                   >
                     <img
-                      src="https://cdn-icons-png.flaticon.com/128/6062/6062646.png"
+                      src="/images/web-programming.png"
                       alt="Preview"
                     />
                   </a>
+                   <a
+                    className="action-btn"
+                    // href={}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src="/images/comments.png"
+                      alt="Preview"
+                    />
+                  
+                  </a>
+
+                  
+                  <a
+                    className="action-btn"
+                    // href={}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src="/images/heart.png"
+                      alt="Preview"
+                    />
+                  
+                  </a>
+                   <h6 style={{marginTop:'43.9px',marginLeft:'186.2px',position:'absolute'}}>{details.project_votes}</h6> 
+                  
+
                 </div>
               </div>
             </div>

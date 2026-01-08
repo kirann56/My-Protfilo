@@ -6,13 +6,32 @@ import Background from "./Background";
 import Chatbot from "./Chatbot";
 import Resume from "./Resume";
 import Project  from "./Project";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Alert from "./Alert";
-
+import Login from "./Login";
 
 function App() {
 
+
+
+
+
   const [alert, setalert] = useState(null);
+
+
+   useEffect(() => {
+    const clearStorage = () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user_id");
+    };
+
+    window.addEventListener("beforeunload", clearStorage);
+
+    return () => {
+      window.removeEventListener("beforeunload", clearStorage);
+    };
+  }, []);
+  
   const ShowAlert=(messege)=>{
 
     setalert({msg:messege})
@@ -25,6 +44,7 @@ setTimeout(() => {
   }
 
 
+  
 
 
   return (
@@ -40,6 +60,7 @@ setTimeout(() => {
     <Route path="/project" element={<Project/>}/>
 
     <Route path="/chatbot" element={<Chatbot/>}/>
+     <Route path="/login" element={<Login/>}/>
 
 </Routes>
 </>

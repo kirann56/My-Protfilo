@@ -19,7 +19,7 @@ class ProjectsDetail(BaseModel):
     ImageUrl: Optional[str] = None
 
 
-class ProjectShow(BaseModel):
+class ProjectWithVotes(BaseModel):
     project_id: int
     ProjectName: str
     ProjectContent: str
@@ -27,11 +27,12 @@ class ProjectShow(BaseModel):
     GitHubLink: Optional[str]
     PreviewLink: Optional[str]
     ImageUrl: Optional[str]
+    project_votes: int
 
     class Config:
-        orm_mode = True
-        from_attributes = True        # Pydantic v2
+        from_attributes = True
         populate_by_name = True
+
 
 
     
@@ -39,25 +40,29 @@ class Comments(BaseModel):
     project_id:int
     comment:str
     
-class User(BaseModel):
-    email:EmailStr
-    password:str
-    username:str
+# schema.py
+from pydantic import BaseModel
 
-class ShowUser(User):
-    user_id:int
-    # created_at:datetime
+class User(BaseModel):
+    email: str
+    username: str
+
+class ShowUser(BaseModel):
+    user_id: int
+    email: str
+    username: str
+
     class Config:
-        orm_mode=True
+        orm_mode = True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
 
 class TokenData(BaseModel):
     id: Optional[int] = None
 
-
-class Token(BaseModel):
-    access_token:str
-    token_type:str
-    
 class ProjectUpvote(BaseModel):
     project_id:int
     dir:conint(le=1)

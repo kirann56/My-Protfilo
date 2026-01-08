@@ -3,6 +3,7 @@ from backend.Database import get_db
 from sqlalchemy.orm import Session
 from fastapi import APIRouter,status,Depends,HTTPException
 from typing import Optional,List
+from sqlalchemy import func
 router=APIRouter(
     tags=['PROJECTS'],
     prefix='/projects'
@@ -21,9 +22,20 @@ def create_post(request:schema.ProjectsDetail,db:Session=Depends(get_db)):
 
 
 
-@router.get('/getallprojects', response_model=List[schema.ProjectShow])
+@router.get('/getallprojects', response_model=List[schema.ProjectWithVotes])
 def get_projects(db: Session = Depends(get_db)):
-    posts = db.query(models.PROJECTS).all()
+    posts = (
+        db.query(
+            models.PROJECTS,
+            func.count(models.PROJECT_UPVOTE.project_id).label("project_votes")
+        )
+        .outerjoin(
+            models.PROJECT_UPVOTE,
+            models.PROJECT_UPVOTE.project_id == models.PROJECTS.project_id
+        )
+        .group_by(models.PROJECTS.project_id)
+        .all()
+    )
 
     if not posts:
         raise HTTPException(
@@ -31,9 +43,18 @@ def get_projects(db: Session = Depends(get_db)):
             detail="No projects found"
         )
 
-    return posts
+    result = []
+    for project, votes in posts:
+        result.append({
+            **project.__dict__,
+            "project_votes": votes
+        })
 
-@router.get('/getprojects/{project_id}',response_model=schema.ProjectShow)
+    return result
+
+
+
+@router.get('/getprojects/{project_id}',response_model=schema.ProjectWithVotes)
 def get_project(project_id:int,db:Session=Depends(get_db)):
     post=db.query(models.PROJECTS).filter(models.PROJECTS.project_id==project_id).first()
 

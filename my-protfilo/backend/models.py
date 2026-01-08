@@ -10,7 +10,6 @@ class CREATEUSER(Base):
     user_id = Column(Integer, primary_key=True, index=True,unique=True)
     username=Column(String,nullable=False)
     email=Column(String,nullable=False,unique=True)
-    password=Column(String,nullable=False)
     created_at=Column(TIMESTAMP(timezone=True),server_default=(('now()')))
     usercomments=relationship('COMMENTS',back_populates='comments_user')
     userprofileupvote=relationship('PROFILE_UPVOTE',back_populates='profile_upvote_ent')

@@ -5,103 +5,125 @@ import { Link } from "react-router-dom";
 import api from "./Api";
 import Footer from "./Footer";
 import SideCard from "./SideCard";
+import { getToken, getUserId } from "./auth";
 
 function Intro({ ShowAlert }) {
-  const [profileLikes, setprofileLikes] = useState([]);
 
 
-  useEffect(() => {
-  const Upvotes= async()=>{
-    try{
-    const votes=await api.get('/profile_upvote/getall-upvotes');
-    setprofileLikes(votes.data)
-    console.log(votes.data);}
-    catch (error){
+  const [src_image, setSrcImage] = useState("/images/star.png");
+  const upvoted_src = "/images/upstar.png";
+
+
+  const [profileLikes, setprofileLikes] = useState({
+    total_profile_upvotes: 0
+  });
+
+ 
+  const Upvotes = async () => {
+    try {
+      const votes = await api.get("/profile_upvote/getall-upvotes");
+      setprofileLikes(votes.data);
+    } catch (error) {
       console.error(error);
     }
   };
 
-Upvotes();
+  const isUpVote = async () => {
+    if (!getToken()) return;
 
-  }, [])
+    try {
+      const res = await api.get("/profile_upvote/is_upvote", {
+        headers: {
+          Authorization: `Bearer ${getToken()}`
+        }
+      });
+
+      if (res.data.is_upvoted === true) {
+        setSrcImage(upvoted_src);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   
+  useEffect(() => {
+    Upvotes();
+    isUpVote();
+  }, []);
 
-
-
-
-
-  const [displayText, setDisplayText] = useState({
-    normal: "",
-    highlight: ""
-  });
+ 
+  const [displayText, setDisplayText] = useState({ normal: "", highlight: "" });
   const [sentenceIndex, setSentenceIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
   const sentences = [
-    {
-      normal: "Welcome to my AI-powered profile — ",
-      highlight: "I'm Kiran Punna."
-    },
-    {
-      normal: "I build intelligent, scalable solutions using ",
-      highlight: "Machine Learning and Generative AI."
-    },
-    {
-      normal: "Discover my technical journey, projects, and ",
-      highlight: "problem-solving approach."
-    },
-    {
-      normal: "Interact with my Spirit AI bot to get ",
-      highlight: "detailed insights and information."
-    }
+    { normal: "Welcome to my AI-powered profile — ", highlight: "I'm Kiran Punna." },
+    { normal: "I build intelligent, scalable solutions using ", highlight: "Machine Learning and Generative AI." },
+    { normal: "Discover my technical journey, projects, and ", highlight: "problem-solving approach." },
+    { normal: "Interact with my Spirit AI bot to get ", highlight: "detailed insights and information." }
   ];
 
-  
   useEffect(() => {
     const current = sentences[sentenceIndex];
     const fullText = current.normal + current.highlight;
-
-    const typedLength =
-      displayText.normal.length + displayText.highlight.length;
-
-    const typingSpeed = isDeleting ? 8 : 8;
-    const pauseBeforeDelete = 2500;
+    const typedLength = displayText.normal.length + displayText.highlight.length;
 
     const timer = setTimeout(() => {
       if (!isDeleting && typedLength === fullText.length) {
-        setTimeout(() => setIsDeleting(true), pauseBeforeDelete);
-      } 
-      else if (isDeleting && typedLength === 0) {
+        setTimeout(() => setIsDeleting(true), 2500);
+      } else if (isDeleting && typedLength === 0) {
         setIsDeleting(false);
         setSentenceIndex((prev) => (prev + 1) % sentences.length);
-      } 
-      else {
-        const newLength = isDeleting
-          ? typedLength - 1
-          : typedLength + 1;
+      } else {
+        const newLength = isDeleting ? typedLength - 1 : typedLength + 1;
 
         const normalPart = fullText.slice(0, current.normal.length);
         const highlightPart = fullText.slice(current.normal.length);
 
         setDisplayText({
-          normal: normalPart.slice(
-            0,
-            Math.min(newLength, normalPart.length)
-          ),
+          normal: normalPart.slice(0, Math.min(newLength, normalPart.length)),
           highlight:
             newLength > normalPart.length
               ? highlightPart.slice(0, newLength - normalPart.length)
               : ""
         });
       }
-    }, typingSpeed);
+    }, 8);
 
     return () => clearTimeout(timer);
   }, [displayText, sentenceIndex, isDeleting]);
 
+
+  const PostUpvote = async () => {
+    if (src_image === upvoted_src) return;
+
+    if (!getToken()) {
+      window.location.href = "/login";
+      return;
+    }
+
+    try {
+      await api.post(
+        "/profile_upvote/",
+        { user_id: getUserId() },
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`
+          }
+        }
+      );
+
+      setSrcImage(upvoted_src);
+      Upvotes();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  
   return (
     <>
-      
       <div className="sentence-container">
         <div className="animated-sentence">
           {displayText.normal}
@@ -112,7 +134,6 @@ Upvotes();
 
       <SideCard />
 
-     
       <div className="main">
         <div className="profile"></div>
 
@@ -126,71 +147,64 @@ Upvotes();
           </p>
 
           <ul className="circles">
-            <Link
-              className="link"
-              to="/resume"
-              onClick={() => ShowAlert("resume")}
-            >
-              <li>
-                <div className="circle1">Resume</div>
-              </li>
+            <Link className="link" to="/resume" onClick={() => ShowAlert("resume")}>
+              <li><div className="circle1">Resume</div></li>
             </Link>
 
             <Link className="link" to="/project">
-              <li>
-                <div className="circle2">Projects</div>
-              </li>
+              <li><div className="circle2">Projects</div></li>
             </Link>
 
             <Link className="link" to="/contact">
-              <li>
-                <div className="circle3">Contact</div>
-              </li>
+              <li><div className="circle3">Contact</div></li>
             </Link>
           </ul>
         </div>
       </div>
 
-     
       <div className="profile-social-media">
         <div className="social-media-new">
-          <a
-            href="https://www.linkedin.com/in/kiran-punna-b50774330/"
-            target="_blank"
-            rel="noreferrer"
-          >
+
+          <a href="https://www.linkedin.com/in/kiran-punna-b50774330/" target="_blank" rel="noreferrer">
             <img src="/images/linkedin (1).png" alt="linkedin" />
           </a>
 
-          <a
-            href="https://github.com/Mr-kiran56"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://github.com/Mr-kiran56" target="_blank" rel="noreferrer">
             <img src="/images/github.png" alt="github" />
           </a>
 
-          <a
-            href="https://leetcode.com/u/kiran_punna/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://leetcode.com/u/kiran_punna/" target="_blank" rel="noreferrer">
             <img src="/images/leetcode.png" alt="leetcode" />
           </a>
 
-            <a
-            // href="https://leetcode.com/u/kiran_punna/"
-            // target="_blank"
-            // rel="noreferrer"
-          >
-            <img className="upvote" src="/images/upvote.png" alt="leetcode" /> {profileLikes.total_profile_upvotes}<h6>People Liked This Profile</h6>
+          <a>
+            <img
+              onClick={PostUpvote}
+              style={{ height: "40px", width: "40px", marginLeft: "20px", cursor: "pointer" }}
+              className="upvote"
+              src={src_image}
+              alt="star"
+            />
           </a>
+
+          <h6
+            style={{
+              position: "absolute",
+              width: "300px",
+              marginTop: "6px",
+              marginLeft: "320px"
+            }}
+          >
+            {profileLikes.total_profile_upvotes}
+            <span style={{ marginLeft: "14px" }}>
+              Persons Liked This Profile
+            </span>
+          </h6>
 
         </div>
       </div>
 
       <hr className="br-line" style={{ margin: "auto" }} />
-
       <Footer />
     </>
   );
