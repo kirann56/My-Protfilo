@@ -8,33 +8,31 @@ import SideCard from "./SideCard";
 import { getToken, getUserId } from "./auth";
 
 function Intro({ ShowAlert }) {
-
-
   const [src_image, setSrcImage] = useState("/images/star.png");
   const upvoted_src = "/images/upstar.png";
 
-
+  
   const [profileLikes, setprofileLikes] = useState({
     total_profile_upvotes: 0
   });
 
- 
   const Upvotes = async () => {
     try {
       const votes = await api.get("/profile_upvote/getall-upvotes");
       setprofileLikes(votes.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching upvotes:", error);
     }
   };
 
   const isUpVote = async () => {
-    if (!getToken()) return;
+    const token = getToken();
+    if (!token) return;
 
     try {
       const res = await api.get("/profile_upvote/is_upvote", {
         headers: {
-          Authorization: `Bearer ${getToken()}`
+          Authorization: `Bearer ${token}`
         }
       });
 
@@ -42,17 +40,15 @@ function Intro({ ShowAlert }) {
         setSrcImage(upvoted_src);
       }
     } catch (err) {
-      console.error(err);
+      console.error("Error checking upvote status:", err);
     }
   };
 
-  
   useEffect(() => {
     Upvotes();
     isUpVote();
   }, []);
 
- 
   const [displayText, setDisplayText] = useState({ normal: "", highlight: "" });
   const [sentenceIndex, setSentenceIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -94,34 +90,52 @@ function Intro({ ShowAlert }) {
     return () => clearTimeout(timer);
   }, [displayText, sentenceIndex, isDeleting]);
 
-
   const PostUpvote = async () => {
-    if (src_image === upvoted_src) return;
+    if (src_image === upvoted_src) {
+      alert("You have already upvoted!");
+      return;
+    }
 
-    if (!getToken()) {
+    const token = getToken();
+    if (!token) {
+      alert("Please login to upvote!");
       window.location.href = "/login";
       return;
     }
 
     try {
-      await api.post(
+      console.log("Sending upvote request...");
+      
+      const response = await api.post(
         "/profile_upvote/",
-        { user_id: getUserId() },
+        {}, 
         {
           headers: {
-            Authorization: `Bearer ${getToken()}`
+            Authorization: `Bearer ${token}`
           }
         }
       );
 
+      console.log("Upvote response:", response.data);
+      
       setSrcImage(upvoted_src);
-      Upvotes();
+      await Upvotes();
+      alert(response.data.message || "Thanks for upvoting!");
     } catch (error) {
-      console.error(error);
+      console.error("Full error:", error);
+      console.error("Error response:", error.response?.data);
+      
+      if (error.response?.status === 401) {
+        alert("Session expired. Please login again.");
+        window.location.href = "/login";
+      } else if (error.response?.data?.detail) {
+        alert(error.response.data.detail);
+      } else {
+        alert("Failed to upvote. Please try again.");
+      }
     }
   };
 
-  
   return (
     <>
       <div className="sentence-container">
@@ -164,7 +178,6 @@ function Intro({ ShowAlert }) {
 
       <div className="profile-social-media">
         <div className="social-media-new">
-
           <a href="https://www.linkedin.com/in/kiran-punna-b50774330/" target="_blank" rel="noreferrer">
             <img src="/images/linkedin (1).png" alt="linkedin" />
           </a>
@@ -177,22 +190,31 @@ function Intro({ ShowAlert }) {
             <img src="/images/leetcode.png" alt="leetcode" />
           </a>
 
-          <a>
+          <button
+            onClick={PostUpvote}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+            
+             
+            }}
+          >
             <img
-              onClick={PostUpvote}
-              style={{ height: "40px", width: "40px", marginLeft: "20px", cursor: "pointer" }}
+              style={{ height: "40px", width: "40px" }}
               className="upvote"
               src={src_image}
               alt="star"
             />
-          </a>
+          </button>
 
           <h6
             style={{
               position: "absolute",
               width: "300px",
               marginTop: "6px",
-              marginLeft: "320px"
+              marginLeft: "370px"
             }}
           >
             {profileLikes.total_profile_upvotes}
@@ -200,7 +222,6 @@ function Intro({ ShowAlert }) {
               Persons Liked This Profile
             </span>
           </h6>
-
         </div>
       </div>
 

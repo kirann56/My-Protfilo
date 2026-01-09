@@ -6,9 +6,11 @@ import { setToken, setUserId } from "./auth";
 function Login() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const res = await api.post("/auth", {
@@ -16,13 +18,16 @@ function Login() {
         email,
       });
 
+  
       setToken(res.data.access_token);
       setUserId(res.data.user_id);
 
       window.location.href = "/";
     } catch (error) {
       console.error("Login failed:", error);
-      alert("Login failed. Please try again.");
+      alert("Login failed. Please check your credentials and try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -33,7 +38,7 @@ function Login() {
 
         <div className="note-banner">
           <p>
-            <strong>Note!</strong> This information will not be shared to Anyone This is Only for Indentity Purpose.
+            <strong>Note!</strong> This information will not be shared with anyone. This is only for identity purposes.
           </p>
         </div>
 
@@ -45,6 +50,7 @@ function Login() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              disabled={isLoading}
             />
           </div>
 
@@ -55,11 +61,12 @@ function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={isLoading}
             />
           </div>
 
-          <button type="submit" className="continue-btn">
-            Continue
+          <button type="submit" className="continue-btn" disabled={isLoading}>
+            {isLoading ? "Loading..." : "Continue"}
           </button>
         </form>
       </div>

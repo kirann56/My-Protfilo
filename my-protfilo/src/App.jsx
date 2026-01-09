@@ -19,18 +19,18 @@ function App() {
   const [alert, setalert] = useState(null);
 
 
-   useEffect(() => {
-    const clearStorage = () => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user_id");
-    };
+  //  useEffect(() => {
+  //   const clearStorage = () => {
+  //     localStorage.removeItem("token");
+  //     localStorage.removeItem("user_id");
+  //   };
 
-    window.addEventListener("beforeunload", clearStorage);
+  //   window.addEventListener("beforeunload", clearStorage);
 
-    return () => {
-      window.removeEventListener("beforeunload", clearStorage);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", clearStorage);
+  //   };
+  // }, []);
   
   const ShowAlert=(messege)=>{
 

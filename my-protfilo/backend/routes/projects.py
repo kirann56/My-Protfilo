@@ -1,9 +1,9 @@
 from backend import models,schema
 from backend.Database import get_db
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session,joinedload
 from fastapi import APIRouter,status,Depends,HTTPException
 from typing import Optional,List
-from sqlalchemy import func
+from sqlalchemy import func,join
 router=APIRouter(
     tags=['PROJECTS'],
     prefix='/projects'
@@ -21,36 +21,46 @@ def create_post(request:schema.ProjectsDetail,db:Session=Depends(get_db)):
     return new_post
 
 
-
 @router.get('/getallprojects', response_model=List[schema.ProjectWithVotes])
 def get_projects(db: Session = Depends(get_db)):
-    posts = (
-        db.query(
-            models.PROJECTS,
-            func.count(models.PROJECT_UPVOTE.project_id).label("project_votes")
-        )
-        .outerjoin(
-            models.PROJECT_UPVOTE,
-            models.PROJECT_UPVOTE.project_id == models.PROJECTS.project_id
-        )
-        .group_by(models.PROJECTS.project_id)
-        .all()
-    )
 
-    if not posts:
+    projects = db.query(models.PROJECTS).all()
+
+    if not projects:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="No projects found"
         )
 
     result = []
-    for project, votes in posts:
+
+    for project in projects:
+
+        votes = (
+            db.query(models.PROJECT_UPVOTE)
+            .filter(models.PROJECT_UPVOTE.project_id == project.project_id)
+            .count()
+        )
+
+ 
+     
+
+        comments = (
+            db.query(models.COMMENTS)
+            .options(joinedload(models.COMMENTS.comments_user))  
+            .filter(models.COMMENTS.project_id == project.project_id)
+            .all()
+        )
+
+
         result.append({
             **project.__dict__,
-            "project_votes": votes
+            "project_votes": votes,
+            "project_comments": comments   
         })
 
     return result
+
 
 
 

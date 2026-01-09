@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr,conint,Field
 from datetime import datetime
-from typing import Optional
+from typing import Optional,List
 
 class ContactDetail(BaseModel):
     firstname: str
@@ -19,29 +19,43 @@ class ProjectsDetail(BaseModel):
     ImageUrl: Optional[str] = None
 
 
+class CommentUserOut(BaseModel):
+    user_id: int
+    username: str
+
+    class Config:
+        from_attributes = True
+
+class CommentOut(BaseModel):
+    id: int
+    comment: str
+    project_id: int
+    comments_user: CommentUserOut   
+    class Config:
+        from_attributes = True
+
+
+
+
 class ProjectWithVotes(BaseModel):
     project_id: int
     ProjectName: str
     ProjectContent: str
-    TechStack: str = Field(alias="TechStcak")
-    GitHubLink: Optional[str]
-    PreviewLink: Optional[str]
-    ImageUrl: Optional[str]
+    TechStcak: str
+    GitHubLink: str | None
+    PreviewLink: str | None
+    ImageUrl: str | None
     project_votes: int
+    project_comments: List[CommentOut]
 
     class Config:
-        from_attributes = True
-        populate_by_name = True
+        orm_mode = True
 
 
-
-    
 class Comments(BaseModel):
     project_id:int
     comment:str
     
-# schema.py
-from pydantic import BaseModel
 
 class User(BaseModel):
     email: str

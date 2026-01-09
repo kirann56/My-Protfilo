@@ -16,7 +16,7 @@ def profile_upvote(
 ):
     current_user_id = get_current_user.user_id
 
-    # ✅ FIX: execute query
+    
     user_exist = db.query(models.PROFILE_UPVOTE).filter(
         models.PROFILE_UPVOTE.user_id == current_user_id
     ).first()

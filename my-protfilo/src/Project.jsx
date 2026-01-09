@@ -8,6 +8,10 @@ import api from "./Api";
 export default function Projects() {
   const [projectDetails, setProjectDetails] = useState([]);
 
+
+
+  
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -22,8 +26,19 @@ export default function Projects() {
     fetchProjects();
   }, []);
   
+ 
 
-  
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <>
@@ -44,14 +59,12 @@ export default function Projects() {
           >
             <div className="project-content">
               <div className="project-image-container">
-                <img
-                  src={
-                   details.ImageUrl ??
-    "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800&h=600&fit=crop"}
-                    
-                  alt={details.ProjectName}
-                  className="project-image"
-                />
+<img
+  src={`https://images.unsplash.com/${details.ImageUrl}?auto=format&fit=crop&h=390&w=450&q=80`}
+  alt="Project preview"
+/>
+
+
                 <div className="project-image-overlay"></div>
               </div>
 
@@ -139,6 +152,7 @@ export default function Projects() {
                   </a>
                    <h6 style={{marginTop:'43.9px',marginLeft:'186.2px',position:'absolute'}}>{details.project_votes}</h6> 
                   
+   
 
                 </div>
               </div>
@@ -146,6 +160,8 @@ export default function Projects() {
           </div>
         ))}
       </div>
+
+   
 
       <hr className="br-line" style={{ margin: "auto" }} />
       <Footer />

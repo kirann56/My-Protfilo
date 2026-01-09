@@ -20,4 +20,3 @@ def comments_post(request:schema.Comments,db:Session=Depends(get_db),get_current
     db.commit()
     db.refresh(comment)
     return comment
-
