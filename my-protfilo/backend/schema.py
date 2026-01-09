@@ -80,3 +80,7 @@ class TokenData(BaseModel):
 class ProjectUpvote(BaseModel):
     project_id:int
     dir:conint(le=1)
+
+class ProjectUpvoteCheck(BaseModel):
+    project_id:int
+    user_id:int

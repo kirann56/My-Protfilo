@@ -6,7 +6,7 @@ from backend.oauth import get_current_user
 
 router=APIRouter(
     tags=['PROJECTS_UPVOTES'],
-    prefix='/PROJECT_UPVOTE'
+    prefix='/project_upvote'
 )
 
 @router.post('/')
@@ -44,6 +44,17 @@ def upvote_project(request:schema.ProjectUpvote,db:Session=Depends(get_db),get_c
         db.refresh(upvotes)
         return {f"Successfully Un-Voted the Project {request.project_id} user id {current_user_id}"}
     
-        
+
+
+
+@router.get('/is_project_upvote')
+def GetProjectUpvote(request:schema.ProjectUpvoteCheck,db:Session=Depends(get_db)):
+
+    upvoted=db.query(models.PROJECT_UPVOTE).filter(models.PROJECT_UPVOTE.project_id==request.project_id,models.PROJECT_UPVOTE.user_id==request.user_id).first()
+    
+    return {
+        "is_upvoted": upvoted is not None
+    }
+
 
 
