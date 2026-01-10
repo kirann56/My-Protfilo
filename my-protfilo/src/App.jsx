@@ -18,7 +18,7 @@ function App() {
 
   const [alert, setalert] = useState(null);
 
-
+//  localStorage.clear();
   //  useEffect(() => {
   //   const clearStorage = () => {
   //     localStorage.removeItem("token");

@@ -4,10 +4,7 @@ import "./Project.css";
 import "./App.css";
 import SideCard from "./SideCard";
 import api from "./Api";
-import { getUserId } from "./auth";
-
-const getToken = () => localStorage.getItem("token");
-const getUsername = () => localStorage.getItem("username") || "Anonymous";
+import { getUserId, getToken, getUsername } from "./auth";
 
 export default function Projects() {
   const [projectDetails, setProjectDetails] = useState([]);
@@ -16,55 +13,62 @@ export default function Projects() {
   const [commentText, setCommentText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await api.get("/projects/getallprojects");
+        setProjectDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
 
-
- useEffect(() => {
-  const fetchProjects = async () => {
-    try {
-      const response = await api.get("/projects/getallprojects");
-      setProjectDetails(response.data);
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-    }
-  };
-
-  fetchProjects();
-}, []);
-
+    fetchProjects();
+  }, []);
 
   const checkUserUpvotes = async (projects) => {
     const userId = getUserId();
-    if (!userId) return;
+    const token = getToken();
+    
+    if (!userId || !token || projects.length === 0) {
+      return;
+    }
+
+    const parsedUserId = parseInt(userId, 10);
+    
+    if (isNaN(parsedUserId)) {
+      console.error("Invalid user_id:", userId);
+      
+      return;
+    }
 
     const upvoted = new Set();
+
     for (const project of projects) {
       try {
         const res = await api.get("/project_upvote/is_project_upvote", {
           params: {
             project_id: project.project_id,
-            user_id: userId
+            user_id: parsedUserId
           }
         });
 
         if (res.data.is_upvoted === true) {
-        
           upvoted.add(project.project_id);
         }
       } catch (err) {
-        console.error("Error checking upvote status:", err);
+        console.error(`Error checking upvote for project ${project.project_id}:`, err);
       }
     }
+    
     setUpvotedProjects(upvoted);
   };
 
-  
-useEffect(() => {
-  if (getToken() && projectDetails.length > 0) {
-    checkUserUpvotes(projectDetails);
-  }
-}, [projectDetails]);
-
-
+  useEffect(() => {
+    if (getToken() && getUserId() && projectDetails.length > 0) {
+      checkUserUpvotes(projectDetails);
+    }
+  }, [projectDetails]);
 
   const handleUpvote = async (projectId) => {
     const token = getToken();
@@ -93,7 +97,6 @@ useEffect(() => {
         }
       );
 
-      
       setUpvotedProjects(prev => new Set([...prev, projectId]));
       setProjectDetails(prev =>
         prev.map(project =>
@@ -133,7 +136,7 @@ useEffect(() => {
 
     setIsSubmitting(true);
     try {
-      const response = await api.post(
+      await api.post(
         "/comments/",
         {
           project_id: selectedProject.project_id,
@@ -146,14 +149,13 @@ useEffect(() => {
         }
       );
 
-    
       const newComment = {
         id: Date.now(),
         comment: commentText,
         project_id: selectedProject.project_id,
         comments_user: {
-          user_id: parseInt(getUserId()),
-          username: getUsername()
+          user_id: parseInt(getUserId(), 10),
+          username: getUsername() || "Anonymous"
         }
       };
 
@@ -196,14 +198,6 @@ useEffect(() => {
     setSelectedProject(null);
     setCommentText("");
   };
-
-
-
-  // localStorage.removeItem("username");
-  
-  // localStorage.removeItem("user_id");
-  
-  // localStorage.removeItem("token");
 
   return (
     <>
@@ -317,244 +311,217 @@ useEffect(() => {
         ))}
       </div>
 
-   
-{selectedProject && (
-  <>
-    <div className="body-cmt" style={{ position: "absolute" }}>
-     
-     
-     
-      <div
-        className="comments-overlay"
-        onClick={closeCommentsPanel}
-        style={{
-          position: "fixed",
-          inset: 0,
-          backgroundColor: "rgba(0,0,0,0.7)",
-          zIndex: 999
-        }}
-      />
-
-    
-    
-
-      <div
-        className="comments-sidebar"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "450px",
-          maxWidth: "90vw",
-          height: "600px",
-          marginTop: "56px",
-          borderRadius: "15px",
-          background:
-            "linear-gradient(135deg, rgba(144,238,144,0.35), rgba(173,216,230,0.35), rgba(255,182,193,0.35), rgba(221,160,221,0.35), rgba(255,255,153,0.35))",
-          backdropFilter: "blur(12px)",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.4)",
-          zIndex: 1000,
-          display: "flex",
-          flexDirection: "column",
-          animation: "slideIn 0.3s ease-out"
-        }}
-      >
-     
-
-
-
-
-
-
-        <div
-          style={{
-            padding: "18px",
-            borderBottom: "1px solid rgba(255,255,255,0.3)",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center"
-          }}
-        >
-          <h3 style={{ margin: 0, fontSize: "20px", fontWeight: 700 }}>
-            Comments ({selectedProject.project_comments.length})
-          </h3>
-          <button
-            onClick={closeCommentsPanel}
-            style={{
-              background: "none",
-              border: "none",
-              fontSize: "24px",
-              cursor: "pointer"
-            }}
-          >
-            ✕
-          </button>
-        </div>
-
-
-        <div
-          className="hide-scroll"
-          style={{
-            flex: 1,
-            overflowY: "auto",
-            padding: "20px"
-          }}
-        >
-          {selectedProject.project_comments.length === 0 ? (
-            <p style={{ textAlign: "center", opacity: 0.7 }}>
-              No comments yet. Be the first to comment!
-            </p>
-          ) : (
-            selectedProject.project_comments.map((comment) => (
-              <div
-                key={comment.id}
-                style={{
-                  background: "rgba(255,255,255,0.65)",
-                  borderRadius: "12px",
-                  padding: "14px",
-                  marginBottom: "14px",
-                  boxShadow: "0 6px 20px rgba(0,0,0,0.15)"
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                    marginBottom: "6px"
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "34px",
-                      height: "34px",
-                      borderRadius: "50%",
-                      background:
-                        "linear-gradient(135deg,#4a9eff,#9b6cff)",
-                      color: "white",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontWeight: 700
-                    }}
-                  >
-                    {comment.comments_user.username
-                      .charAt(0)
-                      .toUpperCase()}
-                  </div>
-                  <span style={{ fontWeight: 600 }}>
-                    {comment.comments_user.username}
-                  </span>
-                </div>
-
-                <p style={{ margin: 0, lineHeight: "1.5" }}>
-                  {comment.comment}
-                </p>
-              </div>
-            ))
-          )}
-        </div>
-
- 
- 
-
-
-
-
-
-        <div
-          style={{
-            padding: "14px",
-            borderTop: "1px solid rgba(255,255,255,0.4)"
-          }}
-        >
-          {getToken() ? (
-            <>
-              <textarea
-                value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
-                placeholder="Write a comment..."
-                rows={3}
-                style={{
-                  width: "100%",
-                  borderRadius: "10px",
-                  padding: "12px",
-                  border: "none",
-                  outline: "none",
-                  marginBottom: "10px",
-                  resize: "none"
-                }}
-              />
-              <button
-                onClick={handleCommentSubmit}
-                disabled={isSubmitting || !commentText.trim()}
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  borderRadius: "10px",
-                  border: "none",
-                  fontWeight: 700,
-                  background:
-                    "linear-gradient(135deg,#4a9eff,#9b6cff)",
-                  color: "white",
-                  cursor: "pointer"
-                }}
-              >
-                {isSubmitting ? "Posting..." : "Post Comment"}
-              </button>
-            </>
-          ) : (
-            <button
-              onClick={() => (window.location.href = "/login")}
+      {selectedProject && (
+        <>
+          <div className="body-cmt" style={{ position: "absolute" }}>
+            <div
+              className="comments-overlay"
+              onClick={closeCommentsPanel}
               style={{
-                width: "100%",
-                padding: "12px",
-                borderRadius: "10px",
-                border: "none",
-                fontWeight: 700,
+                position: "fixed",
+                inset: 0,
+                backgroundColor: "rgba(0,0,0,0.7)",
+                zIndex: 999
+              }}
+            />
+
+            <div
+              className="comments-sidebar"
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "450px",
+                maxWidth: "90vw",
+                height: "600px",
+                marginTop: "56px",
+                borderRadius: "15px",
                 background:
-                  "linear-gradient(135deg,#4a9eff,#9b6cff)",
-                color: "white"
+                  "linear-gradient(135deg, rgba(144,238,144,0.35), rgba(173,216,230,0.35), rgba(255,182,193,0.35), rgba(221,160,221,0.35), rgba(255,255,153,0.35))",
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 10px 40px rgba(0,0,0,0.4)",
+                zIndex: 1000,
+                display: "flex",
+                flexDirection: "column",
+                animation: "slideIn 0.3s ease-out"
               }}
             >
-              Login to comment
-            </button>
-          )}
-        </div>
-      </div>
+              <div
+                style={{
+                  padding: "18px",
+                  borderBottom: "1px solid rgba(255,255,255,0.3)",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center"
+                }}
+              >
+                <h3 style={{ margin: 0, fontSize: "20px", fontWeight: 700 }}>
+                  Comments ({selectedProject.project_comments.length})
+                </h3>
+                <button
+                  onClick={closeCommentsPanel}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    fontSize: "24px",
+                    cursor: "pointer"
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
 
+              <div
+                className="hide-scroll"
+                style={{
+                  flex: 1,
+                  overflowY: "auto",
+                  padding: "20px"
+                }}
+              >
+                {selectedProject.project_comments.length === 0 ? (
+                  <p style={{ textAlign: "center", opacity: 0.7 }}>
+                    No comments yet. Be the first to comment!
+                  </p>
+                ) : (
+                  selectedProject.project_comments.map((comment) => (
+                    <div
+                      key={comment.id}
+                      style={{
+                        background: "rgba(255,255,255,0.65)",
+                        borderRadius: "12px",
+                        padding: "14px",
+                        marginBottom: "14px",
+                        boxShadow: "0 6px 20px rgba(0,0,0,0.15)"
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "10px",
+                          marginBottom: "6px"
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "34px",
+                            height: "34px",
+                            borderRadius: "50%",
+                            background:
+                              "linear-gradient(135deg,#4a9eff,#9b6cff)",
+                            color: "white",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontWeight: 700
+                          }}
+                        >
+                          {comment.comments_user.username
+                            .charAt(0)
+                            .toUpperCase()}
+                        </div>
+                        <span style={{ fontWeight: 600 }}>
+                          {comment.comments_user.username}
+                        </span>
+                      </div>
 
+                      <p style={{ margin: 0, lineHeight: "1.5" }}>
+                        {comment.comment}
+                      </p>
+                    </div>
+                  ))
+                )}
+              </div>
 
-      <style>{`
-        @keyframes slideIn {
-          from {
-            transform: translateX(-100%);
-          }
-          to {
-            transform: translateX(0);
-          }
-        }
+              <div
+                style={{
+                  padding: "14px",
+                  borderTop: "1px solid rgba(255,255,255,0.4)"
+                }}
+              >
+                {getToken() ? (
+                  <>
+                    <textarea
+                      value={commentText}
+                      onChange={(e) => setCommentText(e.target.value)}
+                      placeholder="Write a comment..."
+                      rows={3}
+                      style={{
+                        width: "100%",
+                        borderRadius: "10px",
+                        padding: "12px",
+                        border: "none",
+                        outline: "none",
+                        marginBottom: "10px",
+                        resize: "none"
+                      }}
+                    />
+                    <button
+                      onClick={handleCommentSubmit}
+                      disabled={isSubmitting || !commentText.trim()}
+                      style={{
+                        width: "100%",
+                        padding: "12px",
+                        borderRadius: "10px",
+                        border: "none",
+                        fontWeight: 700,
+                        background:
+                          "linear-gradient(135deg,#4a9eff,#9b6cff)",
+                        color: "white",
+                        cursor: "pointer"
+                      }}
+                    >
+                      {isSubmitting ? "Posting..." : "Post Comment"}
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => (window.location.href = "/login")}
+                    style={{
+                      width: "100%",
+                      padding: "12px",
+                      borderRadius: "10px",
+                      border: "none",
+                      fontWeight: 700,
+                      background:
+                        "linear-gradient(135deg,#4a9eff,#9b6cff)",
+                      color: "white"
+                    }}
+                  >
+                    Login to comment
+                  </button>
+                )}
+              </div>
+            </div>
 
-        .hide-scroll {
-  scrollbar-width: none;      /* Firefox */
-  -ms-overflow-style: none;   /* IE / Edge */
-}
+            <style>{`
+              @keyframes slideIn {
+                from {
+                  transform: translateX(-100%);
+                }
+                to {
+                  transform: translateX(0);
+                }
+              }
 
-.hide-scroll::-webkit-scrollbar {
-  display: none;              /* Chrome / Safari */
-}
+              .hide-scroll {
+                scrollbar-width: none;      /* Firefox */
+                -ms-overflow-style: none;   /* IE / Edge */
+              }
 
-      `
-      
-      }</style>
-    </div>
-  </>
-)}
-
-
+              .hide-scroll::-webkit-scrollbar {
+                display: none;              /* Chrome / Safari */
+              }
+            `}</style>
+          </div>
+        </>
+      )}
 
       <hr className="br-line" style={{ margin: "auto" }} />
       <Footer />
+
+    
     </>
   );
 }

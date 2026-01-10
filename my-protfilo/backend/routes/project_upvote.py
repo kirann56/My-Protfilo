@@ -46,15 +46,17 @@ def upvote_project(request:schema.ProjectUpvote,db:Session=Depends(get_db),get_c
     
 
 
-
 @router.get('/is_project_upvote')
-def GetProjectUpvote(request:schema.ProjectUpvoteCheck,db:Session=Depends(get_db)):
-
-    upvoted=db.query(models.PROJECT_UPVOTE).filter(models.PROJECT_UPVOTE.project_id==request.project_id,models.PROJECT_UPVOTE.user_id==request.user_id).first()
+def GetProjectUpvote(
+    project_id: int,  
+    user_id: int,    
+    db: Session = Depends(get_db)
+):
+    upvoted = db.query(models.PROJECT_UPVOTE).filter(
+        models.PROJECT_UPVOTE.project_id == project_id,
+        models.PROJECT_UPVOTE.user_id == user_id
+    ).first()
     
     return {
         "is_upvoted": upvoted is not None
     }
-
-
-
