@@ -8,30 +8,21 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch.nn.functional as F
 import logging
 
-# ============================================================
-# ENV CONFIG (SAFE FOR DOCKER / CI)
-# ============================================================
+
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 os.environ["HF_HUB_DISABLE_MEMORY_MAPPING"] = "1"
 
 logger = logging.getLogger(__name__)
 
-# ============================================================
-# DEVICE
-# ============================================================
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# ============================================================
-# PATHS
-# ============================================================
 BASE_DIR = Path(__file__).resolve().parent
 
-MODEL_PATH = BASE_DIR / "IntentLLM"/"profileIntentLLM"
-LABEL_ENCODER_PATH = BASE_DIR / "IntentLLM"/"label_encoder.pkl"
+MODEL_PATH = BASE_DIR / "profileIntentLLM"
+LABEL_ENCODER_PATH = BASE_DIR / "label_encoder_p.pkl"
 
-# ============================================================
-# GLOBAL MODEL OBJECTS (LAZY LOADED)
-# ============================================================
+
 tokenizer = None
 model = None
 label_encoder = None
@@ -39,9 +30,7 @@ label_encoder = None
 NUM_ENCODER_CLASSES = None
 NUM_MODEL_CLASSES = None
 
-# ============================================================
-# LAZY MODEL LOADER (CRITICAL FIX)
-# ============================================================
+
 def load_intent_model():
     """
     Load tokenizer, model, and label encoder lazily.
@@ -99,7 +88,7 @@ def predict_intent(sentence: str):
     """
     try:
         if not sentence or len(sentence.strip()) < 3:
-            return "unknown", 0.0
+            return  {"intent" : "unknown","conf": 0.0}
 
         # Load model only when needed
         load_intent_model()
@@ -123,11 +112,12 @@ def predict_intent(sentence: str):
 
         # Safety check
         if pred_id >= NUM_ENCODER_CLASSES:
-            return "unknown", round(confidence, 4)
+            return  {"intent" : "unknown","conf": round(confidence, 4)}
 
         intent = label_encoder.inverse_transform([pred_id])[0]
-        return intent, round(confidence, 4)
+        return {"intent" : intent,"conf": round(confidence, 4)}
 
     except Exception as e:
         logger.error(f"[IntentLLM] Prediction failed: {e}")
-        return "unknown", 0.0
+        return   {"intent" : "unknown","conf": 0.0}
+

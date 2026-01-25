@@ -159,4 +159,6 @@ def  responceJson(intent:str,rdi:int):
     ]
     }
 
-    return RESPONSES[intent][rdi]
+    print(RESPONSES[intent][rdi])
+
+responceJson("help",10)
