@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-FILE_PATH ="B:/Protfilo/my-protfilo/src/assets/Kiran_Punna_AIML_Resume.pdf"
+FILE_PATH ="/app/backend/resume/Kiran_Punna_AIML_Resume.pdf"
 # --- LIFESPAN MANAGER (WINDOWS SAFE VERSION) ---
 @asynccontextmanager
 async def lifespan(app: FastAPI):

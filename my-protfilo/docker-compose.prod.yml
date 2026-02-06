@@ -1,0 +1,25 @@
+services:
+  backend:
+    image: ${AWS_ECR_LOGIN_URI}/${ECR_BACKEND_REPO}:${IMAGE_TAG}
+    container_name: myprofile-backend
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    environment:
+      INTENT_MODEL_PATH: /app/backend/IntentLLM/profileIntentLLM
+      PYTHONPATH: /app/backend
+      PYTHONUNBUFFERED: "1"
+      NVIDIA_API_KEY: ${NVIDIA_API_KEY} 
+      PINECONE_API_KEY: ${PINECONE_API_KEY} 
+
+  frontend:
+    image: ${AWS_ECR_LOGIN_URI}/${ECR_FRONTEND_REPO}:${IMAGE_TAG}
+    container_name: myprofile-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+volumes:
+  uploads_data:
