@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from fastapi import status,Depends,HTTPException,APIRouter
-from backend.Database import get_db
-from backend.oauth import get_current_user
-from backend import models,schema
+from Database import get_db
+from oauth import get_current_user
+import models,schema
 from sqlalchemy import func
 
 router=APIRouter(tags=['PROFILE_UPVOTE'],

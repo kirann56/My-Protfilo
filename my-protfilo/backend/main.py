@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from backend.Database import engine, Base
+from Database import engine, Base
 from fastapi.middleware.cors import CORSMiddleware
 # Ensure you are importing your routers correctly
 from routes import contact, projects, comments, login, profie_upvote, project_upvote,contactEmail
@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-FILE_PATH ="/app/backend/resume/Kiran_Punna_AIML_Resume.pdf"
+FILE_PATH ="/app/resume/Kiran_Punna_AIML_Resume.pdf"
 # --- LIFESPAN MANAGER (WINDOWS SAFE VERSION) ---
 @asynccontextmanager
 async def lifespan(app: FastAPI):

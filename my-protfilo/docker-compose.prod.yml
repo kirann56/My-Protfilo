@@ -6,8 +6,8 @@ services:
       - "8000:8000"
     restart: unless-stopped
     environment:
-      INTENT_MODEL_PATH: /app/backend/IntentLLM/profileIntentLLM
-      PYTHONPATH: /app/backend
+      INTENT_MODEL_PATH: /app/IntentLLM/profileIntentLLM
+      PYTHONPATH: /app
       PYTHONUNBUFFERED: "1"
       NVIDIA_API_KEY: ${NVIDIA_API_KEY} 
       PINECONE_API_KEY: ${PINECONE_API_KEY} 

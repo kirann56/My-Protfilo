@@ -1,8 +1,8 @@
-from backend.Database import get_db
-from backend import models
+from Database import get_db
+import models
 from fastapi import status, HTTPException, Depends, APIRouter, Request
 from sqlalchemy.orm import Session
-from backend import schema
+import schema
 from datetime import datetime
 import smtplib
 from dotenv import load_dotenv

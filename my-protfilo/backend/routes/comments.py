@@ -1,10 +1,10 @@
 # backend/routers/comments.py (or add to your existing routes file)
 
-from backend import models, schema
+import models, schema
 from fastapi import status, Depends, HTTPException, APIRouter
 from sqlalchemy.orm import Session, joinedload
-from backend.Database import get_db
-from backend.oauth import get_current_user
+from Database import get_db
+from oauth import get_current_user
 from typing import List
 
 router = APIRouter(

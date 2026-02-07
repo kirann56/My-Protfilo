@@ -1,8 +1,8 @@
 from backend import models,schema
 from fastapi import status,Depends,HTTPException,APIRouter
 from sqlalchemy.orm import Session
-from backend.Database import get_db
-from backend.oauth import get_current_user
+from Database import get_db
+from oauth import get_current_user
 
 router=APIRouter(
     tags=['PROJECTS_UPVOTES'],
