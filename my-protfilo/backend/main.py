@@ -2,11 +2,11 @@ from fastapi import FastAPI
 from backend.Database import engine, Base
 from fastapi.middleware.cors import CORSMiddleware
 # Ensure you are importing your routers correctly
-from backend.routes import contact, projects, comments, login, profie_upvote, project_upvote,contactEmail
-from backend.LLM import profileChatbot
+from routes import contact, projects, comments, login, profie_upvote, project_upvote,contactEmail
+from LLM import profileChatbot
 
 from contextlib import asynccontextmanager
-from backend.IntentLLM.profileLLM import load_intent_model, predict_intent
+from IntentLLM.profileLLM import load_intent_model, predict_intent
 import os
 from fastapi.responses import FileResponse
 

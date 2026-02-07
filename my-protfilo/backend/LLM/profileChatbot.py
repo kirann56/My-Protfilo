@@ -5,9 +5,9 @@ import random
 import traceback
 
 # Ensure these imports match your actual file structure
-from backend.IntentLLM.profileLLM import predict_intent
-from backend.LLM.jsonResponce import responceJson
-from backend.LLM.chatNVD import build_portfolio_chatbot
+from IntentLLM.profileLLM import predict_intent
+from LLM.jsonResponce import responceJson
+from LLM.chatNVD import build_portfolio_chatbot
 
 router = APIRouter(prefix='/protfiloChatbot', tags=['Chatbot'])
 

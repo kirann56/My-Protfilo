@@ -10,8 +10,8 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.store.memory import InMemoryStore
 
-from backend.LLM.vectorRetriever import get_retriever
-from backend.LLM.promptTemplate import unified_profile_prompt
+from LLM.vectorRetriever import get_retriever
+from LLM.promptTemplate import unified_profile_prompt
 
 load_dotenv(dotenv_path=os.path.join(os.getcwd(), ".env"))
 
