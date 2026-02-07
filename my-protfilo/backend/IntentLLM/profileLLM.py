@@ -115,7 +115,7 @@ def predict_intent(sentence: str):
         pred_id = int(torch.argmax(probs, dim=1).item())
         confidence = float(probs[0, pred_id].item())
 
-        # Safety check
+        # Safety checkS
         if pred_id >= NUM_ENCODER_CLASSES:
             return  {"intent" : "unknown","conf": round(confidence, 4)}
 
