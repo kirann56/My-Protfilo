@@ -606,7 +606,7 @@ export default function Projects() {
               }
 
               .hide-scroll {
-                scrollbar-width: none;      /* Firefox */
+                scrollbar-width: none;      /* Firefoxx */
                 -ms-overflow-style: none;   /* IE / Edge */
               }
 
