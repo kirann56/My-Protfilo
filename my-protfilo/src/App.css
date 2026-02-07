@@ -1,3 +1,7 @@
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
 html, body, #root {
   min-height: 100vh;
   scroll-behavior: smooth;
@@ -62,6 +66,10 @@ body {
   overflow-x: hidden;
 }
 
+/* ============================================
+   PARTICLES & BACKGROUND
+   ============================================ */
+
 /* Particle container */
 .particles {
   position: fixed;
@@ -114,7 +122,13 @@ body {
   min-height: 100vh;        
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
+
+/* ============================================
+   COLOR ORBS
+   ============================================ */
 
 .color-orb {
   position: fixed;
@@ -122,7 +136,7 @@ body {
   filter: blur(80px);
   opacity: 0.4;
   z-index: -1;
-  animation: float 20s ease-in-out infinite;
+  animation: orbFloat 20s ease-in-out infinite;
 }
 
 .orb1 {
@@ -170,7 +184,7 @@ body {
   animation-delay: 7s;
 }
 
-@keyframes float {
+@keyframes orbFloat {
   0%, 100% {
     transform: translate(0, 0) scale(1);
   }
@@ -184,6 +198,10 @@ body {
     transform: translate(40px, -40px) scale(1.05);
   }
 }
+
+/* ============================================
+   FOOTER
+   ============================================ */
 
 .container {
   margin: auto;
@@ -218,11 +236,6 @@ a img {
   height: 30px;
 }
 
-#root {
-  position: relative;
-  z-index: 1;
-}
-
 body::before,
 .particles,
 .color-orb {
@@ -231,11 +244,8 @@ body::before,
 
 /* 🔥 Toast must be above everything */
 .react-hot-toast {
-
   z-index: 999999 !important;
 }
-
-
 
 .email {
   margin-top: 10px;
@@ -265,4 +275,303 @@ body::before,
 .social-media img:hover {
   cursor: pointer;
   transform: scale(1.2) rotate(45deg) translateY(-3px);
+}
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Particles - reduce count visually by making smaller */
+  .particle {
+    opacity: 0.4;
+  }
+
+  /* Color orbs - reduce size and blur */
+  .color-orb {
+    filter: blur(60px);
+    opacity: 0.3;
+  }
+
+  .orb1, .orb3 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .orb2, .orb4 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orb5 {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Footer */
+  .container {
+    width: 95%;
+    flex-direction: column;
+    height: auto;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    gap: 25px;
+    padding: 20px 10px;
+    font-size: 13px;
+  }
+
+  .container div {
+    width: 100%;
+    text-align: center;
+  }
+
+  .email {
+    justify-content: center;
+    margin-top: 8px;
+    font-size: 13px;
+  }
+
+  .social-media {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .social-media img {
+    width: 28px;
+    height: 28px;
+    margin-left: 0;
+  }
+
+  a img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .phone {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Particles - even more subtle */
+  .particle {
+    opacity: 0.3;
+  }
+
+  /* Color orbs - minimal presence */
+  .color-orb {
+    filter: blur(50px);
+    opacity: 0.25;
+  }
+
+  .orb1, .orb3 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orb2, .orb4 {
+    width: 120px;
+    height: 120px;
+  }
+
+  .orb5 {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Footer */
+  .container {
+    width: 98%;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    gap: 20px;
+    padding: 15px 8px;
+    font-size: 12px;
+  }
+
+  .email {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+
+  .social-media {
+    gap: 12px;
+  }
+
+  .social-media img {
+    width: 26px;
+    height: 26px;
+  }
+
+  a img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .phone {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+  }
+
+  .social-media img:hover {
+    transform: scale(1.15) rotate(45deg) translateY(-2px);
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .container {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    gap: 18px;
+    padding: 12px 5px;
+    font-size: 11px;
+  }
+
+  .email {
+    font-size: 11px;
+    word-break: break-all;
+  }
+
+  .social-media {
+    gap: 10px;
+  }
+
+  .social-media img {
+    width: 24px;
+    height: 24px;
+  }
+
+  a img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .phone {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Landscape mode for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    gap: 15px;
+  }
+
+  .container div {
+    width: calc(50% - 15px);
+    min-width: 150px;
+  }
+
+  /* Reduce background animations for better performance */
+  .color-orb {
+    animation-duration: 30s;
+  }
+}
+
+/* Tablet specific */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 90%;
+    gap: 15px;
+    font-size: 13px;
+  }
+
+  .social-media img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .color-orb {
+    filter: blur(70px);
+  }
+}
+
+/* Very large screens */
+@media (min-width: 1400px) {
+  .container {
+    width: 1300px;
+    gap: 25px;
+  }
+}
+
+/* Performance optimization for mobile */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-600px);
+    }
+  }
+
+  @keyframes orbFloat {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(20px, 20px);
+    }
+  }
+
+  /* Disable blur on very old devices if needed */
+  @supports not (backdrop-filter: blur(10px)) {
+    .color-orb {
+      filter: none;
+      opacity: 0.2;
+    }
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .social-media img:hover {
+    transform: none;
+  }
+
+  .social-media img:active {
+    transform: scale(1.1);
+    transition: transform 0.1s;
+  }
+}
+
+/* Accessibility - Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .particle,
+  .color-orb {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .particles,
+  .color-orb,
+  body::before {
+    display: none;
+  }
+
+  .container {
+    width: 100%;
+    margin: 20px 0;
+  }
 }

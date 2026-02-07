@@ -75,7 +75,7 @@
        .profile-social-media {
     position: absolute;
     top: 613px;
-    left: 210px;
+    left: 310px;
     display: flex;
     z-index: 10;
     pointer-events: auto;
@@ -409,3 +409,219 @@
 }
 
 
+
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Profile section */
+    .profile {
+        width: 85%;
+        height: 280px;
+        margin-bottom: 180px;
+        box-shadow: 
+            0 0 25px rgba(240, 245, 109, 0.5),
+            0 0 50px rgba(255, 182, 193, 0.3),
+            0 0 80px rgba(173, 216, 230, 0.2);
+    }
+
+    @keyframes profileGlow {
+        0%, 100% {
+            box-shadow: 
+                0 0 25px rgba(240, 245, 109, 0.5),
+                0 0 50px rgba(255, 182, 193, 0.3),
+                0 0 80px rgba(173, 216, 230, 0.2);
+        }
+        50% {
+            box-shadow: 
+                0 0 40px rgba(255, 182, 193, 0.7),
+                0 0 70px rgba(240, 245, 109, 0.5),
+                0 0 100px rgba(221, 160, 221, 0.4);
+        }
+    }
+
+    /* Main container */
+    .main {
+        flex-direction: column;
+        padding: 0 15px;
+        margin-top: 5px;
+    }
+
+    /* Social media icons */
+    .profile-social-media {
+        position: static;
+        margin: 20px auto;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .social-media-new {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .social-media-new img {
+        height: 35px;
+        width: 35px;
+        margin-left: 0;
+    }
+
+    .upvote-wrapper {
+        margin-left: 0 !important;
+    }
+
+    .like-cmt {
+        position: static;
+        margin: 15px auto 0;
+        width: 90%;
+        max-width: 280px;
+        display: block !important;
+        text-align: center;
+        padding: 12px 20px;
+    }
+
+    .upvote-wrapper:hover + .like-cmt {
+        display: block;
+    }
+
+    /* Sentence container */
+    .sentence-container {
+        margin: 60px 20px 30px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .animated-sentence {
+        font-size: 17px;
+        line-height: 1.5;
+    }
+
+    #inner-text {
+        font-size: 19px;
+    }
+
+    /* Main content */
+    .main-content h1 {
+        margin: 25px 20px 8px;
+        font-size: clamp(45px, 10vw, 55px);
+        text-align: center;
+    }
+
+    .about-bit {
+        margin: 10px 20px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .about-me {
+        margin: 10px 20px;
+        font-size: 15px;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    /* Circle buttons */
+    .circles {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        margin: 30px auto;
+        padding: 0;
+    }
+
+    .circle1, .circle2, .circle3 {
+        width: 110px;
+        height: 110px;
+        font-size: 19px;
+    }
+
+    /* Bottom line */
+    .br-line {
+        margin-top: 150px;
+        width: 90%;
+    }
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+    .profile {
+        width: 90%;
+        height: 240px;
+        margin-bottom: 150px;
+    }
+
+    .sentence-container {
+        margin: 50px 15px 25px;
+    }
+
+    .animated-sentence {
+        font-size: 15px;
+    }
+
+    #inner-text {
+        font-size: 17px;
+    }
+
+    .main-content h1 {
+        font-size: clamp(38px, 10vw, 45px);
+        margin: 20px 15px 8px;
+    }
+
+    .about-bit {
+        font-size: 17px;
+        margin: 8px 15px;
+    }
+
+    .about-me {
+        font-size: 14px;
+        margin: 8px 15px;
+    }
+
+    .circles {
+        gap: 18px;
+        margin: 25px auto;
+    }
+
+    .circle1, .circle2, .circle3 {
+        width: 100px;
+        height: 100px;
+        font-size: 18px;
+    }
+
+    .social-media-new img {
+        height: 32px;
+        width: 32px;
+    }
+
+    .like-cmt {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    .br-line {
+        margin-top: 120px;
+    }
+}
+
+/* Landscape mode for mobile devices */
+@media (max-width: 768px) and (orientation: landscape) {
+    .profile {
+        height: 200px;
+        margin-bottom: 100px;
+    }
+
+    .sentence-container {
+        margin: 40px 20px 20px;
+    }
+
+    .circles {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

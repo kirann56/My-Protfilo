@@ -88,3 +88,154 @@
         .continue-btn:active {
             transform: translateY(0);
         }
+
+
+
+/* ============================================
+   LOGIN PAGE MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+    .login {
+        padding: 15px;
+        min-height: 100vh;
+    }
+
+    .login-form {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .login-form h2 {
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 20px;
+        line-height: 1.3;
+    }
+
+    .note-banner {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 25px;
+    }
+
+    .note-banner p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+
+    .continue-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 17px;
+        border-radius: 12px;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login {
+        padding: 10px;
+    }
+
+    .login-form h2 {
+        font-size: 20px;
+        margin-bottom: 18px;
+        padding: 0 10px;
+    }
+
+    .note-banner {
+        padding: 10px 12px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+    }
+
+    .note-banner p {
+        font-size: 12px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    input {
+        padding: 13px 18px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    .continue-btn {
+        padding: 13px;
+        font-size: 16px;
+        border-radius: 10px;
+        margin-top: 12px;
+    }
+
+    .continue-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+/* Landscape mode for mobile devices */
+@media (max-width: 768px) and (orientation: landscape) {
+    .login {
+        min-height: auto;
+        padding: 20px;
+    }
+
+    .login-form h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .note-banner {
+        margin-bottom: 15px;
+        padding: 8px 12px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    input {
+        padding: 10px 16px;
+    }
+
+    .continue-btn {
+        padding: 10px;
+        margin-top: 10px;
+    }
+}
+
+/* Extra small devices (very small phones) */
+@media (max-width: 360px) {
+    .login-form h2 {
+        font-size: 18px;
+    }
+
+    .note-banner p {
+        font-size: 11px;
+    }
+
+    input {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .continue-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+}

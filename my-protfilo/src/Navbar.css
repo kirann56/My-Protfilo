@@ -58,3 +58,118 @@
 }
 
 
+/* ============================================
+   NAVBAR MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+    .header-home {
+        height: auto;
+        min-height: 54px;
+        padding: 12px 20px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 32px;
+        margin-right: 0;
+        flex: 0 0 auto;
+    }
+
+    /* Reset the auto margin for first non-logo item */
+    .header-home li:not(.logo):first-of-type {
+        margin-left: 0;
+    }
+
+    /* Navigation links container */
+    .header-home li:not(.logo) {
+        flex: 0 0 auto;
+    }
+
+    /* Group navigation items */
+    .header-home li:not(.logo) {
+        font-size: 15px;
+    }
+
+    .header-home li a {
+        font-size: 15px;
+        padding: 8px 12px;
+    }
+
+    .header-home li a:hover {
+        transform: scale(1.08);
+    }
+}
+
+@media (max-width: 480px) {
+    .header-home {
+        padding: 10px 15px;
+        gap: 8px;
+    }
+
+    .logo {
+        font-size: 28px;
+        flex: 1 1 100%;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    /* Make nav items take full width and center */
+    .header-home li:not(.logo) {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+
+    .header-home li a {
+        font-size: 14px;
+        padding: 6px 8px;
+        display: block;
+    }
+}
+
+/* Alternative: Hamburger Menu Version (Optional) */
+/* If you want a hamburger menu instead, use this version: */
+
+@media (max-width: 768px) {
+    /* Uncomment below if you want hamburger menu */
+    
+    .header-home {
+        padding: 12px 20px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        height: 54px;
+    }
+
+    .logo {
+        font-size: 32px;
+    }
+
+    .header-home li:not(.logo) {
+        display: none;
+    }
+
+    .header-home.active li:not(.logo) {
+        display: flex;
+    }
+
+    .header-home.active {
+        flex-direction: column;
+        height: auto;
+        align-items: flex-start;
+    }
+
+    .header-home.active li:not(.logo) {
+        width: 100%;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+    }
+   
+}
