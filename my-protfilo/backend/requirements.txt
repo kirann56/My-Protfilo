@@ -39,16 +39,19 @@ scipy>=1.11
 scikit-learn>=1.4
 
 # ================= NLP / RAG =================
+# ================= NLP / RAG =================
 langchain>=0.2
 langchain-community>=0.2
 langchain-core>=0.2
 langchain-openai>=0.1
 langchain-pinecone>=0.1
+langchain-nvidia-ai-endpoints>=0.1
 langsmith>=0.1
 tiktoken>=0.5
 sentencepiece>=0.2
 transformers>=4.40
 huggingface-hub>=0.22
+
 
 # ================= VECTOR DB =================
 pinecone>=3.0
