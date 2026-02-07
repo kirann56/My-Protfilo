@@ -1,4 +1,4 @@
-from backend import models,schema
+import models,schema
 from fastapi import status,Depends,HTTPException,APIRouter
 from sqlalchemy.orm import Session
 from Database import get_db
