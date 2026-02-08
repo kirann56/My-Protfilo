@@ -66,6 +66,12 @@ app.include_router(contactEmail.router)
 @app.get("/")
 def load():
     return {"message": "hii there how are you !!!"}
+from fastapi import FastAPI
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 
 @app.get("/download-word")
