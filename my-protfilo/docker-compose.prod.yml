@@ -5,7 +5,8 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - /models:/models:ro 
+      - /home/ubuntu/models:/models:ro
+
     restart: unless-stopped
   
 
