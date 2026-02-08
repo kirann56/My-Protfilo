@@ -4,38 +4,24 @@
   box-sizing: border-box;
 }
 
-
 .header-home {
   position: fixed;
   top: 0;
   left: 0;
-
   display: flex;
   align-items: center;
   list-style: none;
   gap: 14px;
-
   width: 100%;
   height: 54px;
-  padding: 0 40px; 
-
+  padding: 0 40px;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
   z-index: 9999;
 }
-
-
-
-
-.header-home li:not(.logo):first-of-type {
-  margin-left: auto;
-}
-
 
 .logo {
   margin-right: auto;
@@ -43,7 +29,7 @@
   font-weight: bold;
 }
 
-.header-home li a {
+.header-home1 {
   text-decoration: none;
   color: #000;
   font-weight: 500;
@@ -51,125 +37,203 @@
   transition: all 0.3s ease;
 }
 
-.header-home li a:hover {
+.header-home1:hover {
   color: rgb(70, 172, 241);
   transform: scale(1.15);
   cursor: pointer;
 }
 
-
-/* ============================================
-   NAVBAR MOBILE RESPONSIVE STYLES
-   ============================================ */
-
-@media (max-width: 768px) {
-    .header-home {
-        height: auto;
-        min-height: 54px;
-        padding: 12px 20px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 10px;
-    }
-
-    .logo {
-        font-size: 32px;
-        margin-right: 0;
-        flex: 0 0 auto;
-    }
-
-    /* Reset the auto margin for first non-logo item */
-    .header-home li:not(.logo):first-of-type {
-        margin-left: 0;
-    }
-
-    /* Navigation links container */
-    .header-home li:not(.logo) {
-        flex: 0 0 auto;
-    }
-
-    /* Group navigation items */
-    .header-home li:not(.logo) {
-        font-size: 15px;
-    }
-
-    .header-home li a {
-        font-size: 15px;
-        padding: 8px 12px;
-    }
-
-    .header-home li a:hover {
-        transform: scale(1.08);
-    }
+/* Hamburger Menu Styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  margin-left: auto;
+  padding: 10px;
+  z-index: 10000;
 }
 
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #000;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 54px;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 9998;
+  padding: 20px;
+  flex-direction: column;
+  gap: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.mobile-menu.active {
+  display: flex;
+  max-height: 400px;
+  padding: 20px;
+}
+
+.mobile-menu li {
+  list-style: none;
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu li:last-child {
+  border-bottom: none;
+}
+
+.mobile-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  font-size: 18px;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.mobile-link:hover {
+  color: rgb(70, 172, 241);
+  transform: scale(1.05);
+}
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   ======================================== */
+
+/* Tablets and Small Laptops */
+@media (max-width: 1024px) {
+  .header-home {
+    padding: 0 30px;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 36px;
+  }
+
+  .header-home1 {
+    font-size: 3
+    5px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .header-home {
+    padding: 0 20px;
+    height: 60px;
+    gap: 0;
+  }
+
+  .logo {
+    font-size: 32px !important;
+  }
+
+  /* Hide navigation items on mobile */
+  .header-home .nav-item {
+    display: none;
+  }
+
+  /* Show hamburger menu */
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    top: 60px;
+  }
+
+  .mobile-link {
+    font-size: 16px;
+  }
+}
+
+/* Small Mobile Devices */
 @media (max-width: 480px) {
-    .header-home {
-        padding: 10px 15px;
-        gap: 8px;
-    }
+  .header-home {
+    padding: 0 15px;
+    height: 56px;
+  }
 
-    .logo {
-        font-size: 28px;
-        flex: 1 1 100%;
-        text-align: center;
-        margin-bottom: 8px;
-    }
+  .logo {
+    font-size: 28px !important;
+  }
 
-    /* Make nav items take full width and center */
-    .header-home li:not(.logo) {
-        flex: 1 1 auto;
-        text-align: center;
-    }
+  .hamburger span {
+    width: 22px;
+    height: 2.5px;
+  }
 
-    .header-home li a {
-        font-size: 14px;
-        padding: 6px 8px;
-        display: block;
-    }
+  .mobile-menu {
+    top: 56px;
+    padding: 15px;
+  }
+
+  .mobile-menu li {
+    padding: 12px 0;
+  }
+
+  .mobile-link {
+    font-size: 15px;
+  }
 }
 
-/* Alternative: Hamburger Menu Version (Optional) */
-/* If you want a hamburger menu instead, use this version: */
+/* Extra Small Devices */
+@media (max-width: 360px) {
+  .header-home {
+    padding: 0 12px;
+    height: 52px;
+  }
 
-@media (max-width: 768px) {
-    /* Uncomment below if you want hamburger menu */
-    
-    .header-home {
-        padding: 12px 20px;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        height: 54px;
-    }
+  .logo {
+    font-size: 24px !important;
+  }
 
-    .logo {
-        font-size: 32px;
-    }
+  .hamburger span {
+    width: 20px;
+    height: 2px;
+    gap: 4px;
+  }
 
-    .header-home li:not(.logo) {
-        display: none;
-    }
+  .mobile-menu {
+    top: 52px;
+    padding: 12px;
+  }
 
-    .header-home.active li:not(.logo) {
-        display: flex;
-    }
+  .mobile-menu li {
+    padding: 10px 0;
+  }
 
-    .header-home.active {
-        flex-direction: column;
-        height: auto;
-        align-items: flex-start;
-    }
-
-    .header-home.active li:not(.logo) {
-        width: 100%;
-        padding: 12px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .hamburger {
-        display: block;
-        cursor: pointer;
-        font-size: 24px;
-    }
-   
+  .mobile-link {
+    font-size: 14px;
+  }
 }

@@ -1,31 +1,41 @@
 import "./Sidecard.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function SideCard() {
+  const [isVisible, setIsVisible] = useState(true);
+
   useEffect(() => {
-    const existing = document.querySelector(".message-alert");
-    if (existing) existing.remove();
+    // Check if user has previously closed the card
+    const isClosed = sessionStorage.getItem("sideCardClosed");
+    if (isClosed === "true") {
+      setIsVisible(false);
+    }
+  }, []);
 
-    const alertBox = document.createElement("div");
-    alertBox.className = "message-alert";
+  const handleClose = (e) => {
+    e.stopPropagation();
+    setIsVisible(false);
+    sessionStorage.setItem("sideCardClosed", "true");
+  };
 
+  const handleCardClick = () => {
+    window.open("/chatbot", "_blank");
+  };
 
-    alertBox.innerHTML = `
-      <img class="ai-chat" src="/images/chat-ai.png" />
-      <div class="alert-text">
+  if (!isVisible) return null;
+
+  return (
+    <div className="message-alert" onClick={handleCardClick}>
+      <img className="ai-chat" src="/images/chat-ai.png" alt="AI Chat" />
+      <div className="alert-text">
         <b>Chat with SpiritAI</b>
         <p>Get to know me better</p>
       </div>
-    `;
-
-    alertBox.onclick = () => {
-      window.open("/chatbot", "_blank");
-    };
-
-    document.body.appendChild(alertBox);
-  }, []);
-
-  return null;
+      <button className="close-btn" onClick={handleClose} aria-label="Close">
+        ×
+      </button>
+    </div>
+  );
 }
 
 export default SideCard;

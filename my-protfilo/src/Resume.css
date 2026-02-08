@@ -295,3 +295,360 @@
         .color-orb {
             pointer-events: none;
         } */
+
+/* ========================================
+   RESUME PAGE MOBILE RESPONSIVE STYLES
+   ======================================== */
+
+/* Tablets and Small Laptops (1024px and below) */
+@media (max-width: 1024px) {
+    .btn-div {
+        max-width: 90%;
+        right: 5%;
+        top: 70px;
+    }
+
+    .btn-resume {
+        height: 38px;
+        width: 220px;
+        font-size: 16px;
+        padding: 0 18px;
+    }
+
+    .resume-container {
+        max-width: 90%;
+        margin: 80px auto;
+        padding: 40px;
+    }
+
+    .resume-title {
+        font-size: 32px;
+        margin-bottom: 80px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+}
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+    .btn-div {
+        position: relative;
+        right: 0;
+        top: 0;
+        max-width: 100%;
+        text-align: center;
+        padding: 20px;
+        margin-top: 60px;
+    }
+
+    .btn-resume {
+        height: 45px;
+        width: 100%;
+        max-width: 300px;
+        font-size: 16px;
+        padding: 0 20px;
+    }
+
+    .resume-container {
+        max-width: 95%;
+        margin: 20px auto 60px;
+        padding: 30px 20px;
+    }
+
+    .resume-title {
+        font-size: 28px;
+        margin-bottom: 60px;
+        text-align: center;
+    }
+
+    .section {
+        margin-bottom: 35px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .job-title {
+        font-size: 15px;
+    }
+
+    .job-duration {
+        font-size: 14px;
+    }
+
+    .content-card {
+        padding: 18px;
+        margin-bottom: 20px;
+        border-radius: 15px;
+    }
+
+    .content-card ul li {
+        font-size: 15px;
+        padding: 6px 0 6px 25px;
+    }
+
+    .content-card ul li:before {
+        font-size: 20px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .skill-category {
+        padding: 18px;
+    }
+
+    .skill-category-title {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    .skill-tag {
+        font-size: 14px;
+        padding: 6px 14px;
+    }
+
+    .achievement-item {
+        padding: 15px 20px;
+        margin-bottom: 12px;
+    }
+
+    .achievement-title {
+        font-size: 15px;
+    }
+
+    .achievement-desc {
+        font-size: 14px;
+    }
+}
+
+/* Mobile Devices (480px and below) */
+@media (max-width: 480px) {
+    .btn-div {
+        padding: 15px;
+        margin-top: 50px;
+    }
+
+    .btn-resume {
+        height: 42px;
+        width: 100%;
+        max-width: 280px;
+        font-size: 15px;
+        padding: 0 18px;
+        border-radius: 20px;
+    }
+
+    .resume-container {
+        max-width: 100%;
+        margin: 15px auto 50px;
+        padding: 25px 15px;
+    }
+
+    .resume-title {
+        font-size: 24px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 17px;
+        margin-bottom: 18px;
+        padding-bottom: 8px;
+        border-bottom-width: 2px;
+    }
+
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+
+    .job-title {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .job-duration {
+        font-size: 13px;
+    }
+
+    .content-card {
+        padding: 15px;
+        margin-bottom: 18px;
+        border-radius: 12px;
+    }
+
+    .content-card ul li {
+        font-size: 14px;
+        padding: 5px 0 5px 22px;
+        line-height: 1.5;
+    }
+
+    .content-card ul li:before {
+        font-size: 18px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .skill-category {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .skill-category-title {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .skill-category-title:before {
+        width: 3px;
+        height: 20px;
+    }
+
+    .skills-list {
+        gap: 8px;
+    }
+
+    .skill-tag {
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 15px;
+    }
+
+    .achievement-item {
+        padding: 12px 18px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        border-left-width: 3px;
+    }
+
+    .achievement-item:hover {
+        transform: translateX(5px);
+    }
+
+    .achievement-title {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    .achievement-desc {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+
+/* Extra Small Devices (360px and below) */
+@media (max-width: 360px) {
+    .btn-div {
+        padding: 12px;
+        margin-top: 45px;
+    }
+
+    .btn-resume {
+        height: 40px;
+        width: 100%;
+        max-width: 100%;
+        font-size: 14px;
+        padding: 0 15px;
+        letter-spacing: 0.3px;
+    }
+
+    .resume-container {
+        margin: 12px auto 40px;
+        padding: 20px 12px;
+    }
+
+    .resume-title {
+        font-size: 22px;
+        margin-bottom: 40px;
+    }
+
+    .section {
+        margin-bottom: 25px;
+    }
+
+    .section-title {
+        font-size: 16px;
+        margin-bottom: 15px;
+        padding-bottom: 6px;
+    }
+
+    .job-title {
+        font-size: 13px;
+    }
+
+    .job-duration {
+        font-size: 12px;
+    }
+
+    .content-card {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    .content-card ul li {
+        font-size: 13px;
+        padding: 4px 0 4px 20px;
+    }
+
+    .content-card ul li:before {
+        font-size: 16px;
+    }
+
+    .skill-category {
+        padding: 12px;
+    }
+
+    .skill-category-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .skills-list {
+        gap: 6px;
+    }
+
+    .skill-tag {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .achievement-item {
+        padding: 10px 15px;
+        margin-bottom: 8px;
+    }
+
+    .achievement-title {
+        font-size: 13px;
+    }
+
+    .achievement-desc {
+        font-size: 12px;
+    }
+}
