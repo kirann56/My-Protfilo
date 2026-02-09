@@ -10,29 +10,13 @@
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    overflow: hidden;  /* ADD THIS LINE */
     box-shadow:
         0 0 40px rgba(240, 245, 109, 0.6),
         0 0 80px rgba(255, 182, 193, 0.4),
         0 0 120px rgba(173, 216, 230, 0.3),
         inset 0 0 60px rgba(255, 255, 255, 0.1);
     animation: profileGlow 4s ease-in-out infinite;
-}
-
-@keyframes profileGlow {
-    0%, 100% {
-        box-shadow:
-            0 0 40px rgba(240, 245, 109, 0.6),
-            0 0 80px rgba(255, 182, 193, 0.4),
-            0 0 120px rgba(173, 216, 230, 0.3),
-            inset 0 0 60px rgba(255, 255, 255, 0.1);
-    }
-    50% {
-        box-shadow:
-            0 0 60px rgba(255, 182, 193, 0.8),
-            0 0 100px rgba(240, 245, 109, 0.6),
-            0 0 140px rgba(221, 160, 221, 0.5),
-            inset 0 0 80px rgba(255, 255, 255, 0.2);
-    }
 }
 
 .profile::before {
@@ -49,6 +33,7 @@
         transparent 70%
     );
     transform: rotate(45deg);
+    pointer-events: none;  /* ADD THIS LINE */
     animation: shimmer 3s linear infinite;
 }
 
@@ -71,7 +56,7 @@
 .profile-social-media {
     position: absolute;
     top: 613px;
-    left: 210px;
+    left: 280px;
     display: flex;
     z-index: 10;
     pointer-events: auto;
@@ -476,12 +461,13 @@
     .sentence-container {
         margin-left: 20px;
         margin-right: 20px;
-        margin-top: 60px;
+        margin-top: 0px;
         margin-bottom: 30px;
         font-size: 16px;
         position:relative;
         justify-content: center;
         text-align: center;
+         min-height: 70px;  
     }
 
     .animated-sentence {
@@ -592,8 +578,12 @@
 /* Small Mobile Devices */
 @media (max-width: 480px) {
     .sentence-container {
-        margin: 40px 15px 25px;
+        /* margin: 40px 15px 25px; */
         font-size: 14px;
+       height: 80px;
+        margin-bottom: 50px;
+        min-height: 70px; 
+        margin-top: 10px;
     }
 
     .animated-sentence {

@@ -151,7 +151,7 @@ function Intro({ ShowAlert }) {
         </div>
       </div>
 
-      <SideCard />
+      {/* <SideCard /> */}
 
       <div className="main">
         <div className="profile"></div>

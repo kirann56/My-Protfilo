@@ -41,6 +41,11 @@ function Navbar() {
             Contact
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/chatbot" className="header-home1">
+            SpiritAI
+          </Link>
+        </li>
 
         <div
           className={`hamburger ${isMenuOpen ? "active" : ""}`}
@@ -66,6 +71,11 @@ function Navbar() {
         <li>
           <Link to="/contact" className="mobile-link" onClick={closeMenu}>
             Contact
+          </Link>
+        </li>
+        <li>
+          <Link to="/chatbot" className="mobile-link" onClick={closeMenu}>
+            SpiritAI
           </Link>
         </li>
       </div>

@@ -62,7 +62,7 @@ const handleSubmit = async (e) => {
   return (
     <>
       <div className="container-detail">
-        <SideCard/>
+        {/* <SideCard/> */}
         <div className="details">
           <h1>Contact</h1>
           <p>Looking forward to hearing from you</p>

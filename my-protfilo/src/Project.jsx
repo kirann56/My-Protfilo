@@ -270,7 +270,7 @@ export default function Projects() {
   return (
     <>
       <div className="projects-container" id="projects">
-        <SideCard />
+        {/* <SideCard /> */}
         <h1 className="projects-title">Projects</h1>
 
         {projectDetails.length === 0 && (
