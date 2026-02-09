@@ -20,7 +20,7 @@ function downloadWord() {
        
 
     <div className="resume-container">
-        <SideCard/>
+        {/* <SideCard/> */}
 
         <div className="btn-div">
         <button className="btn-resume" onClick={downloadWord}>Download Resume</button>
