@@ -32,7 +32,7 @@ numpy
 pandas
 scipy
 scikit-learn
-
+torch
 # ================= NLP / RAG =================
 langchain
 langchain-openai
