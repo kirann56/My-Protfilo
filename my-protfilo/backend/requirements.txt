@@ -14,7 +14,7 @@ python-jose
 passlib[bcrypt]
 bcrypt
 email-validator
-
+langchain-nvidia-ai-endpoints
 # ================= UTIL =================
 python-dotenv
 requests
