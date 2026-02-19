@@ -19,8 +19,8 @@ COPY requirements.txt .
 
 # Install python deps
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir uvicorn[standard] fastapi && \
     pip install --no-cache-dir -r requirements.txt
+
 
 # Copy backend code
 COPY . .
