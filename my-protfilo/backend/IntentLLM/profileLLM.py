@@ -1,10 +1,10 @@
 import os
-import torch
+# import torch
 import joblib
 import numpy as np
 import logging
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import torch.nn.functional as F
+# import torch.nn.functional as F
 from huggingface_hub import hf_hub_download
 
 # ---------------- ENV FIXES ----------------
