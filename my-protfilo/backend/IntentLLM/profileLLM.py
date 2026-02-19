@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 # ---------------- DEVICE ----------------
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # ---------------- HF MODEL INFO ----------------
 HF_MODEL_ID = "KiranPunna/profile_intent"
