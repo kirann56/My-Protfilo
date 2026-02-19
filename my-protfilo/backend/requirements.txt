@@ -1,59 +1,44 @@
 # ================= CORE API =================
-fastapi>=0.116,<1.0
-uvicorn[standard]>=0.36,<1.0
-starlette>=0.48,<1.0
-pydantic>=2.11,<3.0
-pydantic-settings>=2.11,<3.0
-python-multipart>=0.0.20
-orjson>=3.9
+fastapi
+uvicorn[standard]
+python-multipart
+orjson
 
 # ================= DATABASE =================
-SQLAlchemy>=2.0
-alembic>=1.16
-psycopg2-binary>=2.9
+SQLAlchemy
+alembic
+psycopg2-binary
 
 # ================= AUTH =================
-python-jose>=3.5
-passlib[bcrypt]>=1.7
-bcrypt>=4.3
-email-validator>=2.3
+python-jose
+passlib[bcrypt]
+bcrypt
+email-validator
 
 # ================= UTIL =================
-python-dotenv>=1.1
-requests>=2.31
-httpx>=0.27
-rich>=13.7
-tqdm>=4.66
-click>=8.3
-dnspython>=2.8
+python-dotenv
+requests
+httpx
+rich
+tqdm
+click
+dnspython
 
 # ================= ASYNC =================
-anyio>=4.10
-sniffio>=1.3
-aiofiles>=23.2
+aiofiles
 
 # ================= DATA =================
-numpy>=1.26,<2.0
-pandas>=2.1
-scipy>=1.11
-scikit-learn>=1.4
+numpy
+pandas
+scipy
+scikit-learn
 
 # ================= NLP / RAG =================
-# ================= NLP / RAG =================
-langchain==0.2.12
-langchain-community==0.2.11
-langchain-core==0.2.28
-langchain-openai==0.1.22
-langchain-pinecone==0.0.1
-pinecone-client==3.2.2
-langchain-nvidia-ai-endpoints>=0.1
-langsmith>=0.1
-tiktoken>=0.5
-sentencepiece>=0.2
-transformers>=4.40
-huggingface-hub>=0.22
-
-
-# ================= VECTOR DB =================
-pinecone>=3.0
-
+langchain
+langchain-openai
+langchain-pinecone
+pinecone-client
+tiktoken
+sentencepiece
+transformers
+huggingface-hub
