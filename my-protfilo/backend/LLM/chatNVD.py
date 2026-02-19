@@ -27,7 +27,7 @@ def get_graph_for_user(username: str):
         model="meta/llama-3.1-8b-instruct",
         temperature=0.1,
         max_completion_tokens=4096,
-        #streaming=True
+        streaming=True
     )
     retriever = get_retriever()
     prompt = unified_profile_prompt()
