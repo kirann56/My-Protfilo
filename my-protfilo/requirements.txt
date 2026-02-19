@@ -43,7 +43,8 @@ langchain>=0.2
 langchain-community>=0.2
 langchain-core>=0.2
 langchain-openai>=0.1
-langchain-pinecone>=0.1
+langchain-pinecone==0.0.1
+pinecone-client>=3.0
 langsmith>=0.1
 tiktoken>=0.5
 sentencepiece>=0.2
@@ -53,12 +54,4 @@ huggingface-hub>=0.22
 # ================= VECTOR DB =================
 pinecone>=3.0
 
-# ================= CV (OPTIONAL – see note below) =================
-opencv-python>=4.9
-ultralytics>=8.2
-cvzone>=1.6
 
-# ================= TORCH =================
-torch>=2.1
-torchvision>=0.16
-torchaudio>=2.1
